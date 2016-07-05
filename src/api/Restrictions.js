@@ -67,8 +67,8 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    like(key: string, value: any): Function {
-        return Restrictions._this.__like(key, value, false);
+    like = (key: string, value: any): Function => {
+        return this.__like(key, value, false);
     }
     /**
      *
@@ -76,8 +76,8 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    ilike(key: string, value: any): Function {
-        return Restrictions._this.__like(key, value, true);
+    ilike = (key: string, value: any): Function => {
+        return this.__like(key, value, true);
     }
 
     /**
@@ -143,7 +143,7 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    or(...restrictions: Array<Function>) {
+    or(...restrictions: Array<Function>): Function {
         return (data: Map): boolean => {
             let result = false;
             for (let i = 0; i < restrictions.length; i++) {
@@ -157,7 +157,7 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    and(...restrictions: Array<Function>) {
+    and(...restrictions: Array<Function>): Function {
         return (data: Map): boolean => {
             let result = true;
             for (let i = 0; i < restrictions.length; i++) {
@@ -167,5 +167,5 @@ class Restrictions {
         };
     }
 }
-Restrictions._this = new Restrictions();
-export default Restrictions._this;
+
+export default new Restrictions();

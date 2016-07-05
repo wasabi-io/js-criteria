@@ -125,24 +125,24 @@ class Criteria {
             }
         } else {
         **/
-            result = [];
-            let i;
-            for (i = 0; i < dataArray.length; i++) {
-                let data = dataArray[i];
-                let isDataAdded = true;
-                if (this.__restrictions.length > 0) {
-                    if (!Restrictions.and.apply(null, this.__restrictions)(data)) {
-                        isDataAdded = false;
-                    }
-                }
-                if (isDataAdded) {
-                    result.push(data);
+        result = [];
+        let i;
+        for (i = 0; i < dataArray.length; i++) {
+            let data = dataArray[i];
+            let isDataAdded = true;
+            if (this.__restrictions.length > 0) {
+                if (!Restrictions.and.apply(null, this.__restrictions)(data)) {
+                    isDataAdded = false;
                 }
             }
-            for (i = 0; i < this.__order.length; i++) {
-                result = this.__order[i](result);
+            if (isDataAdded) {
+                result.push(data);
             }
-            result = result.slice(first, last);
+        }
+        for (i = 0; i < this.__order.length; i++) {
+            result = this.__order[i](result);
+        }
+        result = result.slice(first, last);
         /** } **/
         return result;
     }

@@ -62,21 +62,21 @@ describe("Criteria.js", () => {
     });
 
     it("add", () => {
-       let expectedResult = [
-           {
-               id: "5",
-               name: "Sanji",
-               surname: ""
-           },
-           {
-               id: "8",
-               name: "Franky",
-               surname: ""
-           }
+        let expectedResult = [
+            {
+                id: "5",
+                name: "Sanji",
+                surname: ""
+            },
+            {
+                id: "8",
+                name: "Franky",
+                surname: ""
+            }
         ];
         const criteria = new Criteria(data);
         criteria.add(Restrictions.gt("id", 2));
-        criteria.add(Restrictions.__like("name", "%an%"));
+        criteria.add(Restrictions.like("name", "%an%"));
         chai.assert.deepEqual(criteria.list(), expectedResult);
     });
 
@@ -95,7 +95,7 @@ describe("Criteria.js", () => {
         ];
         const criteria = new Criteria(data);
         criteria.add(Restrictions.gt("id", 2));
-        criteria.add(Restrictions.__like("name", "%an%"));
+        criteria.add(Restrictions.like("name", "%an%"));
         criteria.addOrder(Order.asc("name"));
         chai.assert.deepEqual(criteria.list(), expectedResult);
 

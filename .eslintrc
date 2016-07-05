@@ -59,26 +59,6 @@
         "prefer-const": 0,
         "no-param-reassign": 0,
         "no-this-before-super": 2,
-        "react/jsx-boolean-value": 0,
-        "react/jsx-indent": [
-            1,
-            4
-        ],
-        "react/jsx-no-duplicate-props": 2,
-        "react/sort-comp": 0,
-        "react/prop-types": [
-            2,
-            {
-                "ignore": [
-                    "children",
-                    "className",
-                    "style",
-                    "bsStyle",
-                    "bsClass",
-                    "bsSize"
-                ]
-            }
-        ],
         "flowtype/require-parameter-type": 1,
         "flowtype/require-return-type": [
             1,
