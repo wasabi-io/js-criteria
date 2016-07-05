@@ -50,7 +50,7 @@ class Criteria {
      *
      * @returns {number}
      */
-    getFirstResult(): number {
+    getFirstResult = (): number => {
         return this.__firstResult;
     }
 
@@ -58,7 +58,7 @@ class Criteria {
      *
      * @returns {number}
      */
-    getMaxResult(): number  {
+    getMaxResult = (): number => {
         return this.__maxResult;
     }
 
@@ -66,7 +66,7 @@ class Criteria {
      *
      * @returns {Array<Function>}
      */
-    getRestrictions(): Array<Function> {
+    getRestrictions = (): Array<Function> => {
         return this.__restrictions;
     }
 
@@ -74,7 +74,7 @@ class Criteria {
      *
      * @param {Function} restriction
      */
-    add(restriction: Function) {
+    add = (restriction: Function) => {
         this.__restrictions.push(restriction);
     }
 
@@ -82,7 +82,7 @@ class Criteria {
      *
      * @param {Function} order
      */
-    addOrder(order: Function) {
+    addOrder = (order: Function) => {
         this.__order.push(order);
     }
 
@@ -90,7 +90,7 @@ class Criteria {
      *
      * @param {number} first
      */
-    setFirstResult(first: number) {
+    setFirstResult = (first: number) => {
         this.__firstResult = first - 1;
     }
 
@@ -98,7 +98,7 @@ class Criteria {
      *
      * @param {number} max
      */
-    setMaxResults(max: number) {
+    setMaxResults = (max: number) => {
         this.__maxResult = max;
     }
 
@@ -106,7 +106,7 @@ class Criteria {
      *
      * @return {any}
      */
-    list(): any {
+    list = (): any => {
         let dataArray = this.__mapArray;
         let first = this.__firstResult;
         let last = this.__firstResult + this.__maxResult;

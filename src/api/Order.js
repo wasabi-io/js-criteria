@@ -2,13 +2,14 @@
  * Provide ordering to the result set..
  */
 class Order {
+
     /**
      *
      * @param {string} key
      * @return {Function}
      */
     asc(key: string): Function {
-        return this.__sort(key, false);
+        return Order._this.__sort(key, false);
     }
     /**
      *
@@ -16,7 +17,7 @@ class Order {
      * @return {Function}
      */
     desc(key: string): Function {
-        return this.__sort(key, true);
+        return Order._this.__sort(key, true);
     }
 
     /**
@@ -45,5 +46,5 @@ class Order {
         };
     }
 }
-
+Order._this = new Order();
 export default new Order();

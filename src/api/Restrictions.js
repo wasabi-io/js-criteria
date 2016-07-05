@@ -68,7 +68,7 @@ class Restrictions {
      * @returns {Function}
      */
     like(key: string, value: any): Function {
-        return this.__like(key, value, false);
+        return Restrictions._this.__like(key, value, false);
     }
     /**
      *
@@ -77,7 +77,7 @@ class Restrictions {
      * @returns {Function}
      */
     ilike(key: string, value: any): Function {
-        return this.__like(key, value, true);
+        return Restrictions._this.__like(key, value, true);
     }
 
     /**
@@ -167,5 +167,5 @@ class Restrictions {
         };
     }
 }
-
-export default new Restrictions();
+Restrictions._this = new Restrictions();
+export default Restrictions._this;
