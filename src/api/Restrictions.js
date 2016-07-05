@@ -1,3 +1,4 @@
+import Validation from "../util/Validation";
 /**
  * Resrictions to constrain the results to be retrieved.
  */
@@ -36,29 +37,26 @@ class Restrictions {
      * @private
      */
     __like = (key: string, value: any,isILike: boolean): Function => {
-        console.log("Called ilike");
-        let sw = value.startsWith("%");
-        console.log("value.startsWith");
-        let ew = value.endsWith("%");
-        console.log("value.endsWith");
+        let sw = Validation.startsWith(value, "%");
+        let ew = Validation.endsWith(value, "%");
         let startIndex = sw ? 1 : 0;
         let endIndex = ew ? value.length - 1 : value.length;
-        console.log("Value before substring : " + value);
         value = value.substring(startIndex, endIndex);
-        console.log("Value after substring : " + value);
         return (data: Map): boolean => {
             let propValue = data[key];
+            if (propValue && typeof propValue !== "string") {
+                propValue = propValue.toString();
+            }
             if (isILike) {
                 value = value.toLocaleLowerCase();
                 propValue = propValue.toLocaleLowerCase();
             }
-
             if (sw && ew) {
                 return propValue.indexOf(value) > -1;
             } else if (sw) {
-                return propValue.endsWith(value);
+                return Validation.endsWith(propValue, value);
             } else if (ew) {
-                return propValue.startsWith(value);
+                return Validation.startsWith(propValue, value);
             }
             return propValue === value;
         };

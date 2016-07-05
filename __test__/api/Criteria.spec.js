@@ -52,8 +52,9 @@ const data = [
     }
 ];
 
-
-describe("Criteria.js", () => {
+/** @test {api/Criteria} **/
+describe("api/Criteria.js", () => {
+    /** @test {api/Criteria#constructors} */
     it("constructors", () => {
         const criteria = new Criteria(data);
         chai.assert.equal(criteria.getFirstResult(), 0);
@@ -61,6 +62,7 @@ describe("Criteria.js", () => {
         chai.assert.deepEqual(criteria.getRestrictions(), []);
     });
 
+    /** @test {api/Criteria#add} **/
     it("add", () => {
         let expectedResult = [
             {
@@ -79,7 +81,7 @@ describe("Criteria.js", () => {
         criteria.add(Restrictions.like("name", "%an%"));
         chai.assert.deepEqual(criteria.list(), expectedResult);
     });
-
+    /** @test {api/Criteria#addOrder} **/
     it("addOrder", () => {
         let expectedResult = [
             {

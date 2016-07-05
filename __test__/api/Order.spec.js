@@ -20,7 +20,9 @@ const data = [
     }
 ];
 
-describe("Order.js", () => {
+/** @test {api/Order} **/
+describe("api/Order.js", () => {
+    /** @test {api/Order#asc} **/
     it("asc", () => {
         let expected = [
             {
@@ -42,7 +44,7 @@ describe("Order.js", () => {
         let sorterFunction = Order.asc("name");
         chai.assert.deepEqual(sorterFunction(data), expected);
     });
-
+    /** @test {api/Order#desc} **/
     it("desc", () => {
         let expected = [
             {
