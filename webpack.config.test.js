@@ -30,7 +30,7 @@ commonSettings.debug = true;
  * source-map - A SourceMap is emitted. See also output.sourceMapFilename.
  * @type {string}
  */
-commonSettings.devtool = "source-map";
+commonSettings.devtool = "eval-source-map";
 
 commonSettings.module.preLoaders.push({ test: /.js$/, loader: "eslint", exclude: /node_modules/ });
 commonSettings.module.loaders.push({

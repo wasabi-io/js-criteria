@@ -41,8 +41,9 @@ class Restrictions {
         let startIndex = sw ? 1 : 0;
 
         let endIndex = ew ? value.length - 1 : value.length;
+        console.log("Value before substring : " + value);
         value = value.substring(startIndex, endIndex);
-
+        console.log("Value after substring : " + value);
         return (data: Map): boolean => {
             let propValue = data[key];
             if (isILike) {
@@ -68,6 +69,8 @@ class Restrictions {
      * @returns {Function}
      */
     like = (key: string, value: any): Function => {
+        console.log("like call ilike" + this.__like);
+        console.log(key + " = " + value);
         return this.__like(key, value, false);
     }
     /**
