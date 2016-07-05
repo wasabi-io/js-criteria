@@ -1,10 +1,31 @@
+/**
+ * Provide ordering to the result set..
+ */
 class Order {
+    /**
+     *
+     * @param {string} key
+     * @return {Function}
+     */
     asc(key: string): Function {
         return this.__sort(key, false);
     }
+    /**
+     *
+     * @param {string} key
+     * @return {Function}
+     */
     desc(key: string): Function {
         return this.__sort(key, true);
     }
+
+    /**
+     *
+     * @param {string} key
+     * @param {boolean} isDesc
+     * @return {Function}
+     * @private
+     */
     __sort(key: string, isDesc: boolean): Function {
         let less = isDesc ? 1 : -1;
         let greater = isDesc ? -1 : 1;

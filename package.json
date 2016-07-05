@@ -1,11 +1,12 @@
 {
   "name": "js-criteria",
-  "version": "0.0.3",
-  "description": "Json, Javascript Map Object Criteria Api",
+  "version": "0.0.4",
+  "description": "Criteria Api on Json, Javascript Map Object Data",
   "main": "lib/index.js",
   "scripts": {
     "test": "karma start webpack.config.test.js",
     "codecov": "cat coverage/*/lcov.info | codecov",
+    "docs": "./node_modules/.bin/esdoc -c esdoc.json",
     "build": "webpack --config webpack.config.build.js  --progress --profile --colors && babel ./src --out-dir ./lib "
   },
   "keywords": [
@@ -17,7 +18,8 @@
     "chai",
     "mocha",
     "isparta",
-    "istanbul"
+    "istanbul",
+    "esdocs"
   ],
   "repository": {
     "type": "git",
@@ -34,6 +36,8 @@
     "babel-preset-stage-0": "6.5.0",
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
+    "esdoc": "0.4.7",
+    "esdoc-es7-plugin": "0.0.3",
     "eslint": "2.9.0",
     "eslint-config-airbnb": "9.0.1",
     "eslint-import-resolver-webpack": "0.2.4",
