@@ -18,12 +18,7 @@
     "source": "./__test__"
   },
   "manual": {
-    "overview": ["./manual/overview.md", "./manual/feature.md"],
-    "installation": ["./manual/installation.md"],
-    "usage": ["./manual/usage.md", "./manual/api.md"],
-    "tutorial": ["./manual/tutorial.md"],
-    "configuration": ["./manual/configuration.md"],
-    "faq": ["./manual/faq.md"],
+    "usage": [ "./manual/api.md"],
     "changelog": ["./CHANGELOG.md"]
   },
   "plugins": [
