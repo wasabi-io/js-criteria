@@ -30,21 +30,21 @@ You can import this project in 2 ways.
 
 ```javascript    
     [
-                {
-                    id: "2",
-                    name: "ewrewr",
-                    surname: "fdvdfg"
-                },
-                {
-                    id: "3",
-                    name: "dsfdsf",
-                    surname: "xcvvxcv"
-                },
-                {
-                    id: "4",
-                    name: "dfdsf",
-                    surname: "dsfsdf"
-                }
+        {
+            id: "1",
+            name: "Luffy",
+            surname: "Monkey D."
+        },
+        {
+            id: "2",
+            name: "Zoro",
+            surname: "Roronoa"
+        },
+        {
+            id: "3",
+            name: "Nami",
+            surname: ""
+        },
     ];
 ```
      
