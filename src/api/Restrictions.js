@@ -36,10 +36,12 @@ class Restrictions {
      * @private
      */
     __like = (key: string, value: any,isILike: boolean): Function => {
+        console.log("Called ilike");
         let sw = value.startsWith("%");
+        console.log("value.startsWith");
         let ew = value.endsWith("%");
+        console.log("value.endsWith");
         let startIndex = sw ? 1 : 0;
-
         let endIndex = ew ? value.length - 1 : value.length;
         console.log("Value before substring : " + value);
         value = value.substring(startIndex, endIndex);
@@ -69,8 +71,6 @@ class Restrictions {
      * @returns {Function}
      */
     like = (key: string, value: any): Function => {
-        console.log("like call ilike" + this.__like);
-        console.log(key + " = " + value);
         return this.__like(key, value, false);
     };
     /**
