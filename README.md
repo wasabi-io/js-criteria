@@ -1,10 +1,13 @@
 # js-criteria
 
-#### A complete json , javascript map object criteria library.  
+#### A criteria library on json , javascript map object.  
 
 ##### Motivation
+
 Aims to be a complete solution for query on json and javascript map objects. All coded with ES6 syntax.
+
 ##### What's inside
+
 * [Webpack](https://webpack.github.io/) for all development (server,hotload etc.) and build (package, optimize, etc.) needs.
 * [Babel](https://babeljs.io/flow) for writing codes with ES6 syntax and transpiling them browser compatible codes. 
 * [ESLint](http://eslint.org/) for protecting our nice formatted codes.
@@ -15,6 +18,7 @@ Aims to be a complete solution for query on json and javascript map objects. All
 * [Istanbul](https://github.com/gotwarlost/istanbul) for code coveragereporting.
 
 ### Quick Start
+
 #### Install and Usage
 Go to your project folder
 ```shell
@@ -25,7 +29,7 @@ You can import this project in 2 ways.
 1. Partial import. For ex. `import Criteria from "js-criteria/lib/api/Criteria";`
 2. All-in-one, minified, optimized single js. For ex. **TODO: example coming soon.**
 
-
+* [see api detail for usage](./manual/api.md)
 * Example Data 
 
 ```javascript    
@@ -48,12 +52,13 @@ You can import this project in 2 ways.
     ];
 ```
      
-     
-* Create Criteria 
+
+* Create Criteria to query on list of data
    
 ```javascript
-    const criteria = new Criteria(data);  
+    const criteria = new Criteria(dataList);  
 ```
+
 
 * add Restrictions 
 
