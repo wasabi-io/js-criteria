@@ -27,7 +27,7 @@ class Order {
      * @return {Function}
      * @private
      */
-    __sort(key: string, isDesc: boolean): Function {
+    __sort = (key: string, isDesc: boolean): Function => {
         let less: number = isDesc ? 1 : -1;
         let greater: number = isDesc ? -1 : 1;
         return (dataList: Array<Map>): Array<Map> => {
