@@ -2,6 +2,11 @@
 
 #### A criteria library on json , javascript map object.  
 
+[![Build Status](https://travis-ci.org/kbukum/js-criteria.svg?branch=master)](https://travis-ci.org/kbukum/js-criteria)
+[![Docs Coverage](https://doc.esdoc.org/github.com/kbukum/js-criteria/badge.svg)](https://doc.esdoc.org/github.com/kbukum/js-criteria)
+[![codecov](https://codecov.io/gh/kbukum/js-criteria/branch/master/graph/badge.svg)](https://codecov.io/gh/kbukum/js-criteria)
+
+
 ##### Motivation
 
 Aims to be a complete solution for query on json and javascript map objects. All coded with ES6 syntax.
