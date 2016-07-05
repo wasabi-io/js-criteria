@@ -1,6 +1,6 @@
 {
   "name": "js-criteria",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Json, Javascript Map Object Criteria Api",
   "main": "lib/index.js",
   "scripts": {
