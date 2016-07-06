@@ -8,7 +8,7 @@ class Order {
      * @param {string} key
      * @return {Function}
      */
-    asc = (key: string): Function => {
+    asc (key: string): Function {
         return this.__sort(key, false);
     }
     /**
@@ -16,7 +16,7 @@ class Order {
      * @param {string} key
      * @return {Function}
      */
-    desc = (key: string): Function => {
+    desc (key: string): Function {
         return this.__sort(key, true);
     }
 
@@ -27,7 +27,7 @@ class Order {
      * @return {Function}
      * @private
      */
-    __sort = (key: string, isDesc: boolean): Function => {
+    __sort (key: string, isDesc: boolean): Function {
         let less: number = isDesc ? 1 : -1;
         let greater: number = isDesc ? -1 : 1;
         return (dataList: Array<Map>): Array<Map> => {

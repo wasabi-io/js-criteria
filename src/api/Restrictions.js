@@ -26,7 +26,7 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    gt = (key: string, value: any): Function => {
+    gt(key: string, value: any): Function {
         return (data: Map): boolean => {
             return data[key] > value;
         };
@@ -38,7 +38,7 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    lt = (key: string, value: any): Function => {
+    lt(key: string, value: any): Function {
         return (data: Map): boolean => {
             return data[key] < value;
         };
@@ -52,7 +52,7 @@ class Restrictions {
      * @returns {Function}
      * @private
      */
-    __like = (key: string, value: any,isILike: boolean): Function => {
+    __like(key: string, value: any,isILike: boolean): Function {
         let sw = Validation.startsWith(value, "%");
         let ew = Validation.endsWith(value, "%");
         let startIndex = sw ? 1 : 0;
@@ -84,7 +84,7 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    like = (key: string, value: any): Function => {
+    like(key: string, value: any): Function {
         return this.__like(key, value, false);
     };
 
@@ -94,7 +94,7 @@ class Restrictions {
      * @param {Array<any>} values
      * @returns {Function}
      */
-    in = (key: string, values: Array<any>) : Function => {
+    in(key: string, values: Array<any>) : Function {
         let restrictions = [];
         for (let i = 0; i < values.length; i++) {
             restrictions[restrictions.length] = this.like(key, values[i]);
@@ -107,7 +107,7 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    ilike = (key: string, value: any): Function => {
+    ilike(key: string, value: any): Function {
         return this.__like(key, value, true);
     };
     /**
@@ -116,7 +116,7 @@ class Restrictions {
      * @param {Array<any>} values
      * @returns {Function}
      */
-    iin = (key: string, values: Array<any>) : Function => {
+    iin(key: string, values: Array<any>) : Function{
         let restrictions = [];
         for (let i = 0; i < values.length; i++) {
             restrictions[restrictions.length] = this.ilike(key, values[i]);
@@ -130,7 +130,7 @@ class Restrictions {
      * @param {any} endValue
      * @returns {Function}
      */
-    between = (key: string, startValue: any, endValue: any): Function => {
+    between(key: string, startValue: any, endValue: any): Function{
         return (data: Map): boolean => {
             let propValue = data[key];
             return propValue >= startValue && propValue <= endValue;
@@ -142,7 +142,7 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    isNull = (key: string): Function => {
+    isNull(key: string): Function {
         return (data: Map): boolean => {
             let propValue = data[key];
             return (propValue === undefined || propValue === null);
@@ -153,7 +153,7 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    isNotNull = (key: string): Function => {
+    isNotNull(key: string): Function {
         return (data: Map): boolean => {
             return !(data[key] === undefined || data[key] === null);
         };
@@ -174,7 +174,7 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    isNotEmpty = (key: string): Function => {
+    isNotEmpty(key: string): Function {
         return (data: Map): boolean => {
             let propValue = data[key];
             return !((propValue === undefined || propValue === null) || propValue === "");
@@ -186,7 +186,7 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    or = (...restrictions: Array<Function>): Function => {
+    or(...restrictions: Array<Function>): Function {
         return (data: Map): boolean => {
             let result = false;
             for (let i = 0; i < restrictions.length; i++) {
@@ -200,7 +200,7 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    and = (...restrictions: Array<Function>): Function => {
+    and (...restrictions: Array<Function>): Function {
         return (data: Map): boolean => {
             let result = true;
             for (let i = 0; i < restrictions.length; i++) {
