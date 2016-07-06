@@ -11,11 +11,11 @@ class Restrictions {
      * @param {any} value
      * @returns {Function}
      */
-    op(op: string, key: string, value: any) {
+    op(op: string, key: string, value: any): Function {
         return (data: Map): boolean => {
             if (typeof data[key] === "number") {
                 console.log(data[key]+ op + value);
-                return eval(data[key]+ op + value)
+                return eval(data[key]+ op + value);
             }
             return eval("'" + data[key] + "'" + op + "'" +value + "'");
         };

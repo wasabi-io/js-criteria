@@ -60,7 +60,7 @@ describe("api/Restrictions.js", () => {
             id: 9,
             name: "Brook",
             surname: ""
-        }
+        };
 
         chai.assert.isTrue(Restrictions.op(">","id", 5)(temp));
         chai.assert.isFalse(Restrictions.op(">","id", 10)(temp));
