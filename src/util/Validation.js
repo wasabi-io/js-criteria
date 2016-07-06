@@ -10,7 +10,7 @@ class Validation {
      * @param {number} position
      * @returns {boolean}
      */
-    startsWith = (value: any, search: string, position: number): boolean => {
+    startsWith (value: any, search: string, position: number): boolean {
         if(!search || search === "") {
             return true;
         }
@@ -31,7 +31,7 @@ class Validation {
      * @param {number} position
      * @returns {boolean}
      */
-    endsWith = (value: any, search: string, position: number): boolean => {
+    endsWith (value: any, search: string, position: number): boolean {
         if(!search || search === "") {
             return true;
         }

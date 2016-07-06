@@ -31,7 +31,7 @@ class Order {
         let less: number = isDesc ? 1 : -1;
         let greater: number = isDesc ? -1 : 1;
         return (dataList: Array<Map>): Array<Map> => {
-            dataList.sort((source: Map, destination: Map): number => {
+            dataList.sort(function(source: Map, destination: Map): number{
                 let sourceValue = source[key];
                 let destinationValue = destination[key];
                 if (sourceValue === destinationValue) {
