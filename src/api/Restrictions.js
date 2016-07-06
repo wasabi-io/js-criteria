@@ -6,6 +6,22 @@ class Restrictions {
 
     /**
      *
+     * @param {string} op
+     * @param {string} key
+     * @param {any} value
+     * @returns {Function}
+     */
+    op(op: string, key: string, value: any) {
+        return (data: Map): boolean => {
+            if (typeof data[key] === "number") {
+                console.log(data[key]+ op + value);
+                return eval(data[key]+ op + value)
+            }
+            return eval("'" + data[key] + "'" + op + "'" +value + "'");
+        };
+    }
+    /**
+     *
      * @param {string} key
      * @param {any} value
      * @returns {Function}
@@ -71,6 +87,20 @@ class Restrictions {
     like = (key: string, value: any): Function => {
         return this.__like(key, value, false);
     };
+
+    /**
+     *
+     * @param {string} key
+     * @param {Array<any>} values
+     * @returns {Function}
+     */
+    in = (key: string, values: Array<any>) : Function => {
+        let restrictions = [];
+        for (let i = 0; i < values.length; i++) {
+            restrictions[restrictions.length] = this.like(key, values[i]);
+        }
+        return this.or.apply(this, restrictions);
+    }
     /**
      *
      * @param {string} key
@@ -80,7 +110,19 @@ class Restrictions {
     ilike = (key: string, value: any): Function => {
         return this.__like(key, value, true);
     };
-
+    /**
+     *
+     * @param {string} key
+     * @param {Array<any>} values
+     * @returns {Function}
+     */
+    iin = (key: string, values: Array<any>) : Function => {
+        let restrictions = [];
+        for (let i = 0; i < values.length; i++) {
+            restrictions[restrictions.length] = this.ilike(key, values[i]);
+        }
+        return this.or.apply(this, restrictions);
+    }
     /**
      *
      * @param {string} key

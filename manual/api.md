@@ -77,6 +77,10 @@
     import Restrictions from "js-criteria/lib/api/Restrictions" 
 ```
  
+##### op() : Operator Evaluation
+```javascript
+     criteria.add(Restrictions.op(">",id",3));
+```  
 ##### gt() : Greater Then
 
 ```javascript
@@ -114,6 +118,32 @@
      criteria.add(Restrictions.like("name","%a%"));
 ```  
 
+##### in - case sensitive
+
+* equal 
+
+```javascript
+     criteria.add(Restrictions.in("name",["a", "b"]));
+```  
+
+* startsWith
+
+```javascript
+     criteria.add(Restrictions.in("name",["a%","s%"]));
+```  
+
+* endsWith
+
+```javascript
+     criteria.add(Restrictions.in("name",["%a","%s"]));
+```  
+ 
+* contains 
+ 
+```javascript
+     criteria.add(Restrictions.in("name",["%a%", "%s%"]));
+```  
+
 ##### ilike - non-case sensitive
 
 * equal 
@@ -140,6 +170,33 @@
      criteria.add(Restrictions.ilike("name","%A%"));
 ```  
  
+##### iin - non-case sensitive
+
+* equal 
+
+```javascript
+     criteria.add(Restrictions.iin("name",["A","B"]));
+```  
+
+* startsWith
+
+```javascript
+     criteria.add(Restrictions.iin("name",["A%","B%"]));
+```  
+
+* endsWith
+
+```javascript
+     criteria.add(Restrictions.iin("name",["%A","%B"]));
+```  
+ 
+* contains
+ 
+```javascript
+     criteria.add(Restrictions.iin("name",["%A%","%B%"]));
+``` 
+ 
+  
 ##### between
  
 ```javascript

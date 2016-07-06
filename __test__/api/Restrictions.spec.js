@@ -51,6 +51,21 @@ const data = [
 /** @test {api/Restrictions} **/
 describe("api/Restrictions.js", () => {
     /** @test {api/Restrictions#gt} **/
+    it("op", () => {
+
+        chai.assert.isFalse(Restrictions.op(">","id", 5)(data[0]));
+        chai.assert.isTrue(Restrictions.op(">","id", 5)(data[6]));
+
+        let temp = {
+            id: 9,
+            name: "Brook",
+            surname: ""
+        }
+
+        chai.assert.isTrue(Restrictions.op(">","id", 5)(temp));
+        chai.assert.isFalse(Restrictions.op(">","id", 10)(temp));
+    });
+    /** @test {api/Restrictions#gt} **/
     it("gt", () => {
         chai.assert.isFalse(Restrictions.gt("id", 5)(data[0]));
         chai.assert.isTrue(Restrictions.gt("id", 5)(data[6]));
@@ -71,6 +86,17 @@ describe("api/Restrictions.js", () => {
         chai.assert.isFalse(Restrictions.like("name", "Us%")(data[0]));
         chai.assert.isTrue(Restrictions.like("name", "Us%")(data[3]));
     });
+    /** @test {api/Restrictions#in} **/
+    it("in", () => {
+        chai.assert.isFalse(Restrictions.in("name", ["%an"])(data[0]));
+        chai.assert.isFalse(Restrictions.in("name", ["%an"])(data[4]));
+
+        chai.assert.isFalse(Restrictions.in("name", ["%a%"])(data[0]));
+        chai.assert.isTrue(Restrictions.in("name", ["%a%"])(data[4]));
+
+        chai.assert.isFalse(Restrictions.in("name", ["Us%"])(data[0]));
+        chai.assert.isTrue(Restrictions.in("name", ["Us%"])(data[3]));
+    });
     /** @test {api/Restrictions#ilike} **/
     it("ilike", () => {
         chai.assert.isFalse(Restrictions.ilike("name", "%AN")(data[0]));
@@ -81,6 +107,17 @@ describe("api/Restrictions.js", () => {
 
         chai.assert.isFalse(Restrictions.ilike("name", "US%")(data[0]));
         chai.assert.isTrue(Restrictions.ilike("name", "US%")(data[3]));
+    });
+    /** @test {api/Restrictions#iin} **/
+    it("iin", () => {
+        chai.assert.isFalse(Restrictions.iin("name", ["%AN"])(data[0]));
+        chai.assert.isFalse(Restrictions.iin("name", ["%AN"])(data[4]));
+
+        chai.assert.isFalse(Restrictions.iin("name", ["%A%"])(data[0]));
+        chai.assert.isTrue(Restrictions.iin("name", ["%A%"])(data[4]));
+
+        chai.assert.isFalse(Restrictions.iin("name", ["US%"])(data[0]));
+        chai.assert.isTrue(Restrictions.iin("name", ["US%"])(data[3]));
     });
     /** @test {api/Restrictions#between} **/
     it("between", () => {
