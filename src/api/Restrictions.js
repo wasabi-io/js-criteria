@@ -4,39 +4,68 @@ import Validation from "../util/Validation";
  */
 class Restrictions {
 
+
     /**
-     *
+     * evulates op and execute it.
      * @param {string} op
      * @param {string} key
      * @param {any} value
-     * @returns {Function}
+     * @return {Function}
      */
     op(op: string, key: string, value: any): Function {
         return (data: Map): boolean => {
             if (typeof data[key] === "number") {
-                console.log(data[key]+ op + value);
                 return eval(data[key]+ op + value);
             }
             return eval("'" + data[key] + "'" + op + "'" +value + "'");
         };
     }
-    /**
-     *
-     * @param {string} key
-     * @param {any} value
-     * @returns {Function}
-     */
-    gt(key: string, value: any): Function {
-        return (data: Map): boolean => {
-            return data[key] > value;
-        };
-    };
 
     /**
-     *
+     * checks equality given value and given value of data by key.
      * @param {string} key
      * @param {any} value
-     * @returns {Function}
+     * @param {boolean} caseSensitive
+     * @return {Function}
+     * @private
+     */
+    __eq(key: string, value: any, caseSensitive: boolean): Function {
+        return (data: Map): boolean => {
+            let propValue = data[key];
+            if (propValue && typeof propValue !== "string") {
+                propValue = propValue.toString();
+            }
+            if (value && typeof value !== "string") {
+                value = value.toString();
+            }
+            if (!caseSensitive) {
+                if(value) {
+                    value = value.toLocaleLowerCase();
+                }
+                if(propValue){
+                    propValue = propValue.toLocaleLowerCase();
+                }
+            }
+            return propValue === value;
+        };
+    }
+
+    /**
+     * checks equality given value and given value of data by key.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
+     * @return {Function}
+     */
+    eq(key: string, value: any, caseSensitive: boolean): Function {
+        return this.__eq(key, value, caseSensitive);
+    }
+
+    /**
+     * checks given value of data by key less then given value .
+     * @param {string} key
+     * @param {any} value
+     * @return {Function}
      */
     lt(key: string, value: any): Function {
         return (data: Map): boolean => {
@@ -45,96 +74,177 @@ class Restrictions {
     };
 
     /**
-     *
+     * checks given value of data by key less then or equals given value .
      * @param {string} key
      * @param {any} value
-     * @param {boolean} isILike
+     * @return {Function}
+     */
+    lte(key: string, value: any): Function {
+        return (data: Map): boolean => {
+            /* eslint-disable eqeqeq */
+            console.log(data[key]);
+            console.log(value);
+            return data[key] <= value;
+        };
+    };
+
+    /**
+     * checks given value of data by key greater then given value .
+     * @param {string} key
+     * @param {any} value
+     * @return {Function}
+     */
+    gt(key: string, value: any): Function {
+        return (data: Map): boolean => {
+            return data[key] > value;
+        };
+    };
+
+    /**
+     * checks given value of data by key greater then or equals given value .
+     * @param {string} key
+     * @param {any} value
+     * @return {Function}
+     */
+    gte(key: string, value: any): Function {
+        return (data: Map): boolean => {
+            return data[key] >= value;
+        };
+    };
+
+    /**
+     * checks given value of data by key between given startValue and given endValue.
+     * @param {string} key
+     * @param {any} startValue
+     * @param {any} endValue
+     * @return {Function}
+     */
+    between(key: string, startValue: any, endValue: any): Function{
+        if(startValue > endValue) {
+            let temp = startValue;
+            startValue = endValue;
+            endValue = temp;
+        }
+        let funcArray = [this.gte(key, startValue), this.lte(key, endValue)];
+        return this.and.apply(this, funcArray);
+    }
+
+    /**
+     * checks given value of data by key like given value by  fromLeft and fromRight parameters.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} fromLeft
+     * @param {boolean} fromRight
+     * @param {boolean} caseSensitive
      * @returns {Function}
      * @private
      */
-    __like(key: string, value: any,isILike: boolean): Function {
-        let sw = Validation.startsWith(value, "%");
-        let ew = Validation.endsWith(value, "%");
-        let startIndex = sw ? 1 : 0;
-        let endIndex = ew ? value.length - 1 : value.length;
-        value = value.substring(startIndex, endIndex);
+    __like(key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive: boolean): Function{
         return (data: Map): boolean => {
             let propValue = data[key];
             if (propValue && typeof propValue !== "string") {
                 propValue = propValue.toString();
             }
-            if (isILike) {
+            if (!caseSensitive) {
                 value = value.toLocaleLowerCase();
                 propValue = propValue.toLocaleLowerCase();
             }
-            if (sw && ew) {
+
+            if (fromLeft && fromRight) {
                 return propValue.indexOf(value) > -1;
-            } else if (sw) {
-                return Validation.endsWith(propValue, value);
-            } else if (ew) {
+            } else if (fromLeft) {
                 return Validation.startsWith(propValue, value);
+            } else if (fromRight) {
+                return Validation.endsWith(propValue, value);
+            } else {
+                return this.__eq(key, value, caseSensitive)(data);
             }
-            return propValue === value;
+
+
         };
-    };
+    }
 
     /**
-     *
+     * checks given value of data by key like given value by percent (%) charachter like sql `like`.
      * @param {string} key
      * @param {any} value
+     * @param {boolean} caseSensitive
+     * @returns {Function}
+     * @private
+     */
+    __likeWithPercent(key: string, value: any, caseSensitive: boolean): Function{
+        let fromLeft = Validation.endsWith(value, "%");
+        let fromRight = Validation.startsWith(value, "%");
+        let startIndex = fromRight ? 1 : 0;
+        let endIndex = fromLeft ? value.length - 1 : value.length;
+        value = value.substring(startIndex, endIndex);
+        return this.__like(key, value, fromLeft, fromRight, caseSensitive);
+    }
+
+    /**
+     * checks given value of data by key startsWith given value by caseSensitive parameter.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    like(key: string, value: any): Function {
-        return this.__like(key, value, false);
+    startsWith(key: string, value: any, caseSensitive: boolean): Function {
+        return this.__like(key, value, true, false, caseSensitive);
+    }
+
+    /**
+     * checks given value of data by key endsWith given value by caseSensitive parameter.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
+     * @returns {Function}
+     */
+    endsWith(key: string, value: any, caseSensitive: boolean): Function {
+        return this.__like(key, value, false, true, caseSensitive);
+    }
+
+    /**
+     * checks given value of data by key contains given value by caseSensitive parameter.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
+     * @returns {Function}
+     */
+    contains(key: string, value: any, caseSensitive: boolean): Function {
+        return this.__like(key, value, true, true, caseSensitive);
+    }
+
+    /**
+     * checks given value of data by key like given value by caseSensitive parameter.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
+     * @returns {Function}
+     */
+    like(key: string, value: any, caseSensitive: boolean): Function {
+        return this.__likeWithPercent(key, value, caseSensitive);
     };
 
     /**
      *
      * @param {string} key
      * @param {Array<any>} values
+     * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    in(key: string, values: Array<any>) : Function {
-        let restrictions = [];
-        for (let i = 0; i < values.length; i++) {
-            restrictions[restrictions.length] = this.like(key, values[i]);
-        }
-        return this.or.apply(this, restrictions);
-    }
     /**
-     *
-     * @param {string} key
-     * @param {any} value
-     * @returns {Function}
-     */
-    ilike(key: string, value: any): Function {
-        return this.__like(key, value, true);
-    };
-    /**
-     *
+     * checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
      * @param {Array<any>} values
+     * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    iin(key: string, values: Array<any>) : Function{
+    in(key: string, values: Array<any>, caseSensitive: boolean) : Function {
         let restrictions = [];
         for (let i = 0; i < values.length; i++) {
-            restrictions[restrictions.length] = this.ilike(key, values[i]);
+            restrictions[restrictions.length] = this.eq(key, values[i], caseSensitive);
         }
         return this.or.apply(this, restrictions);
-    }
-    /**
-     *
-     * @param {string} key
-     * @param {any} startValue
-     * @param {any} endValue
-     * @returns {Function}
-     */
-    between(key: string, startValue: any, endValue: any): Function{
-        return (data: Map): boolean => {
-            let propValue = data[key];
-            return propValue >= startValue && propValue <= endValue;
-        };
     }
 
     /**
@@ -148,6 +258,7 @@ class Restrictions {
             return (propValue === undefined || propValue === null);
         };
     }
+
     /**
      *
      * @param {string} key
@@ -158,6 +269,7 @@ class Restrictions {
             return !(data[key] === undefined || data[key] === null);
         };
     }
+
     /**
      *
      * @param {string} key
@@ -169,6 +281,7 @@ class Restrictions {
             return (propValue === undefined || propValue === null) || propValue === "";
         };
     }
+
     /**
      *
      * @param {string} key
@@ -195,6 +308,7 @@ class Restrictions {
             return result;
         };
     }
+
     /**
      *
      * @param { ...Function }restrictions
@@ -202,13 +316,16 @@ class Restrictions {
      */
     and (...restrictions: Array<Function>): Function {
         return (data: Map): boolean => {
+
             let result = true;
             for (let i = 0; i < restrictions.length; i++) {
                 result = result && restrictions[i](data);
             }
+
             return result;
         };
     }
+
 }
 
 export default new Restrictions();

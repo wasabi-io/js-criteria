@@ -43,7 +43,7 @@ class Validation {
             value = value.toString();
         }
 
-        if (typeof position !== "number" || Math.floor(position) !== position || position > subjectString.length) {
+        if (typeof position !== "number" || Math.floor(position) !== position || position > value.length) {
             position = value.length;
         }
         position -= search.length;

@@ -1,69 +1,77 @@
 import Order from "api/Order";
-
 import chai from "chai";
 
-const data = [
+const data =[
     {
-        id: "1",
-        name: "Luffy",
-        surname: "Monkey D."
+        name: "Hasan",
+        age: 28
     },
     {
-        id: "2",
-        name: "Zoro",
-        surname: "Roronoa"
+        name: "Kamil",
+        age: 30
     },
     {
-        id: "3",
-        name: "Nami",
-        surname: ""
+        name: "Seray",
+        age: 30
+    },
+    {
+        name: "Ertuğrul",
+        age: 26
     }
-];
+]
 
-/** @test {api/Order} **/
+/** @test {api/Restrictions.js} **/
 describe("api/Order.js", () => {
     /** @test {api/Order#asc} **/
     it("asc", () => {
         let expected = [
             {
-                id: "1",
-                name: "Luffy",
-                surname: "Monkey D."
+                name: "Ertuğrul",
+                age: 26
             },
             {
-                id: "3",
-                name: "Nami",
-                surname: ""
+                name: "Hasan",
+                age: 28
             },
             {
-                id: "2",
-                name: "Zoro",
-                surname: "Roronoa"
+                name: "Kamil",
+                age: 30
+            },
+            {
+                name: "Seray",
+                age: 30
             }
         ];
-        let sorterFunction = Order.asc("name");
-        chai.assert.deepEqual(sorterFunction(data), expected);
+        let result = Order.asc("age")(data);
+        chai.assert.equal(expected[0].age,result[0].age);
+        chai.assert.equal(expected[1].age,result[1].age);
+        chai.assert.equal(expected[2].age,result[2].age);
+        chai.assert.equal(expected[3].age,result[3].age);
     });
     /** @test {api/Order#desc} **/
-    it("desc", () => {
+    it("asc", () => {
         let expected = [
             {
-                id: "2",
-                name: "Zoro",
-                surname: "Roronoa"
+                name: "Kamil",
+                age: 30
             },
             {
-                id: "3",
-                name: "Nami",
-                surname: ""
+                name: "Seray",
+                age: 30
             },
             {
-                id: "1",
-                name: "Luffy",
-                surname: "Monkey D."
+                name: "Hasan",
+                age: 28
             },
+            {
+                name: "Ertuğrul",
+                age: 26
+            }
         ];
-        let sorterFunction = Order.desc("name");
-        chai.assert.deepEqual(sorterFunction(data), expected);
+        let result = Order.desc("age")(data);
+        chai.assert.equal(expected[0].age,result[0].age);
+        chai.assert.equal(expected[1].age,result[1].age);
+        chai.assert.equal(expected[2].age,result[2].age);
+        chai.assert.equal(expected[3].age,result[3].age);
     });
 });

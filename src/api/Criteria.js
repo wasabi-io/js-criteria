@@ -37,6 +37,7 @@ class Criteria {
      */
     __order: Array<Function> = [];
 
+    __aliases: {};
     /**
      *
      * @param {Array<Map>} mapArray
@@ -46,6 +47,13 @@ class Criteria {
         this.__maxResult = mapArray.length;
     }
 
+    /**
+     * @param name
+     * @param alias
+     */
+    createAlias (name: string, alias: string) {
+        this.__aliases[name] = alias;
+    }
     /**
      *
      * @returns {number}
@@ -126,22 +134,26 @@ class Criteria {
         } else {
         **/
         result = [];
-        let i;
-        for (i = 0; i < dataArray.length; i++) {
+        let andOperation = null;
+        if(!this.__restrictions || this.__restrictions === 0 ) {
+            andOperation = (): boolean => { return true; };
+        } else if( this.__restrictions.length === 1 ){
+            andOperation = this.__restrictions[0];
+        } else {
+            andOperation = Restrictions.and.apply(Restrictions, this.__restrictions);
+        }
+        let i = 0;
+        for (; i < dataArray.length; i++) {
             let data = dataArray[i];
-            let isDataAdded = true;
-            if (this.__restrictions.length > 0) {
-                if (!Restrictions.and.apply(null, this.__restrictions)(data)) {
-                    isDataAdded = false;
-                }
-            }
-            if (isDataAdded) {
+            if (andOperation(data)) {
                 result.push(data);
             }
         }
+
         for (i = 0; i < this.__order.length; i++) {
             result = this.__order[i](result);
         }
+
         result = result.slice(first, last);
         /** } **/
         return result;

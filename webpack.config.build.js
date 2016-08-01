@@ -1,9 +1,14 @@
+process.env.NODE_ENV = "production";
 const webpack = require("webpack");
 
 /**
  * import common webpack settings
  */
-const commonSettings = require("./webpack.config.common.js");
+/**
+ * import common webpack settings
+ */
+const commonSettings = require("./webpack.config.common.js")("/src", "/dist", "__test__");
+
 
 /**
  * @link https://github.com/webpack/docs/wiki/optimization#deduplication
@@ -48,8 +53,9 @@ commonSettings.entry = {
 commonSettings.devtool = "source-map";
 
 
+
 commonSettings.output = {
-    path: commonSettings.paths.dist,
+    path: commonSettings.paths.build,
     filename: "[name].min.js",
     library: "js-criteria",
     libraryTarget: "umd"

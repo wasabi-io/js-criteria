@@ -71,137 +71,92 @@
 
 
 
-#### Restrictions
+#### Restrictions 
 
 ```javascript
     import Restrictions from "js-criteria/lib/api/Restrictions" 
 ```
  
 ##### op() : Operator Evaluation
-```javascript
-     criteria.add(Restrictions.op(">",id",3));
-```  
-##### gt() : Greater Then
 
 ```javascript
-     criteria.add(Restrictions.gt("id",3));
-``` 
-
-##### lt() Less Then
-```javascript
-     criteria.add(Restrictions.lt("id",3));
-``` 
-
-##### like - case sensitive
-
-* equal 
-
-```javascript
-     criteria.add(Restrictions.like("name","a"));
+     criteria.add(Restrictions.op("<", "age", "35"));
 ```  
 
-* startsWith
+##### eq() : Equal
 
 ```javascript
-     criteria.add(Restrictions.like("name","a%"));
+     criteria.add(Restrictions.eq("name", "Kamil"));
+     criteria.add(Restrictions.eq("name", "Kamil", true));
 ```  
 
-* endsWith
+##### lt() : Less then
 
 ```javascript
-     criteria.add(Restrictions.like("name","%a"));
-```  
- 
-* contains 
- 
-```javascript
-     criteria.add(Restrictions.like("name","%a%"));
+     criteria.add(Restrictions.lt("age",32));
 ```  
 
-##### in - case sensitive
-
-* equal 
+##### lte() : Less then or Equal
 
 ```javascript
-     criteria.add(Restrictions.in("name",["a", "b"]));
+     criteria.add(Restrictions.lte("age",32));
 ```  
 
-* startsWith
+##### gt() : Greater then
 
 ```javascript
-     criteria.add(Restrictions.in("name",["a%","s%"]));
+     criteria.add(Restrictions.gt("age",32));
 ```  
 
-* endsWith
+##### gte() : Greater then or Equal
 
 ```javascript
-     criteria.add(Restrictions.in("name",["%a","%s"]));
-```  
- 
-* contains 
- 
-```javascript
-     criteria.add(Restrictions.in("name",["%a%", "%s%"]));
+     criteria.add(Restrictions.gte("age",32));
 ```  
 
-##### ilike - non-case sensitive
-
-* equal 
+##### between() : Between startValue and endValue
 
 ```javascript
-     criteria.add(Restrictions.ilike("name","A"));
+     criteria.add(Restrictions.between("age", 29 , 32));
 ```  
 
-* startsWith
+##### startsWith() : Starts with value
 
 ```javascript
-     criteria.add(Restrictions.ilike("name","A%"));
+     criteria.add(Restrictions.startsWith("name","Ka"));
+     criteria.add(Restrictions.startsWith("name","ka", true));
 ```  
 
-* endsWith
+##### endsWith() : Ends with value
 
 ```javascript
-     criteria.add(Restrictions.ilike("name","%A"));
-```  
- 
-* contains
- 
-```javascript
-     criteria.add(Restrictions.ilike("name","%A%"));
-```  
- 
-##### iin - non-case sensitive
-
-* equal 
-
-```javascript
-     criteria.add(Restrictions.iin("name",["A","B"]));
+     criteria.add(Restrictions.endsWith("name","il"));
+     criteria.add(Restrictions.startsWith("name","IL", true));
 ```  
 
-* startsWith
+##### contains() : contains value
 
 ```javascript
-     criteria.add(Restrictions.iin("name",["A%","B%"]));
+     criteria.add(Restrictions.contains("name","mi"));
+     criteria.add(Restrictions.contains("name","MI", true));
 ```  
 
-* endsWith
+
+
+##### like contains with percent charachter like sql LIKE 
 
 ```javascript
-     criteria.add(Restrictions.iin("name",["%A","%B"]));
+     criteria.add(Restrictions.like("name","%il"));
+     criteria.add(Restrictions.like("name", "%aka%", true));
 ```  
- 
-* contains
- 
+
+
+##### in
+
 ```javascript
-     criteria.add(Restrictions.iin("name",["%A%","%B%"]));
-``` 
- 
-  
-##### between
- 
-```javascript
-     criteria.add(Restrictions.between("id", 1 ,5));
-```
+     criteria.add(Restrictions.in("age", [30,31]);
+     criteria.add(Restrictions.in("name", ["Kamil"]);
+```  
 
 ##### isNull
  
