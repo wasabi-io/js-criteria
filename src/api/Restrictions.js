@@ -6,7 +6,7 @@ class Restrictions {
 
 
     /**
-     * evulates op and execute it.
+     * @description evulates op and execute it.
      * @param {string} op
      * @param {string} key
      * @param {any} value
@@ -22,7 +22,7 @@ class Restrictions {
     }
 
     /**
-     * checks equality given value and given value of data by key.
+     * @description checks equality given value and given value of data by key.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -51,7 +51,7 @@ class Restrictions {
     }
 
     /**
-     * checks equality given value and given value of data by key.
+     * @description checks equality given value and given value of data by key.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -62,7 +62,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key less then given value .
+     * @description checks given value of data by key less then given value .
      * @param {string} key
      * @param {any} value
      * @return {Function}
@@ -74,7 +74,7 @@ class Restrictions {
     };
 
     /**
-     * checks given value of data by key less then or equals given value .
+     * @description checks given value of data by key less then or equals given value .
      * @param {string} key
      * @param {any} value
      * @return {Function}
@@ -89,7 +89,7 @@ class Restrictions {
     };
 
     /**
-     * checks given value of data by key greater then given value .
+     * @description checks given value of data by key greater then given value .
      * @param {string} key
      * @param {any} value
      * @return {Function}
@@ -101,7 +101,7 @@ class Restrictions {
     };
 
     /**
-     * checks given value of data by key greater then or equals given value .
+     * @description checks given value of data by key greater then or equals given value .
      * @param {string} key
      * @param {any} value
      * @return {Function}
@@ -113,7 +113,7 @@ class Restrictions {
     };
 
     /**
-     * checks given value of data by key between given startValue and given endValue.
+     * @description checks given value of data by key between given startValue and given endValue.
      * @param {string} key
      * @param {any} startValue
      * @param {any} endValue
@@ -130,7 +130,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key like given value by  fromLeft and fromRight parameters.
+     * @description checks given value of data by key like given value by  fromLeft and fromRight parameters.
      * @param {string} key
      * @param {any} value
      * @param {boolean} fromLeft
@@ -165,7 +165,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key like given value by percent (%) charachter like sql `like`.
+     * @description checks given value of data by key like given value by percent (%) charachter like sql `like`.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -182,7 +182,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key startsWith given value by caseSensitive parameter.
+     * @description checks given value of data by key startsWith given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -193,7 +193,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key endsWith given value by caseSensitive parameter.
+     * @description checks given value of data by key endsWith given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -204,7 +204,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key contains given value by caseSensitive parameter.
+     * @description checks given value of data by key contains given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -215,7 +215,7 @@ class Restrictions {
     }
 
     /**
-     * checks given value of data by key like given value by caseSensitive parameter.
+     * @description checks given value of data by key like given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
@@ -227,13 +227,13 @@ class Restrictions {
 
     /**
      *
-     * @param {string} key
+     * @description @param {string} key
      * @param {Array<any>} values
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
     /**
-     * checks given value of data by key in given array values by caseSensitive parameter.
+     * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
      * @param {Array<any>} values
      * @param {boolean} caseSensitive
@@ -248,7 +248,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description checks given value of data by key is null.
      * @param {string} key
      * @returns {Function}
      */
@@ -260,7 +260,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description checks given value of data by key is not null.
      * @param {string} key
      * @returns {Function}
      */
@@ -271,7 +271,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description checks given value of data by key is empty.
      * @param {string} key
      * @returns {Function}
      */
@@ -283,7 +283,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description checks given value of data by key is not empty.
      * @param {string} key
      * @returns {Function}
      */
@@ -295,7 +295,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description joins Restrictions functions with or validation.
      * @param { ...Function }restrictions
      * @returns {Function}
      */
@@ -310,7 +310,7 @@ class Restrictions {
     }
 
     /**
-     *
+     * @description joins Restrictions functions with and validation.
      * @param { ...Function }restrictions
      * @returns {Function}
      */
