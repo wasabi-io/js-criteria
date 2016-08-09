@@ -1,8 +1,10 @@
+import Binder from "../util/Binder";
 import Restrictions from "./Restrictions";
 
-class PropertyRestriction {
+class PropertyRestriction extends Binder{
     __key;
     constructor(key: string) {
+        super();
         this.__key = key;
     }
     /**

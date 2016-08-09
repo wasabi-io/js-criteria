@@ -1,7 +1,8 @@
+import Binder from "../util/Binder";
 /**
  * Provide ordering to the result set..
  */
-class Order {
+class Order extends Binder{
 
     /**
      *

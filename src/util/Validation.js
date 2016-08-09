@@ -1,7 +1,8 @@
+import Binder from "./Binder";
 /**
  * Provide ordering to the result set..
  */
-class Validation {
+class Validation extends Binder{
 
     /**
      *

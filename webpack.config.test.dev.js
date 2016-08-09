@@ -1,18 +1,18 @@
-process.env.NODE_ENV = "testd";
-const path = require("path");
-function getUserHome() {
-    return process.env.HOME || process.env.USERPROFILE;
-}
 /**
  * import common webpack settings
  */
-const commonSettings = require("./webpack.config.common.js")("/site", "/build", "__test__", "/src");
+const commonSettings = require("./webpack.config.common.js")("src", "dist", "__test__");
+
 
 /**
  * Json Server
  * @type {config|exports|module.exports}
  */
-const ConfigUtils = require("./ConfigUtil");
+const JsonServer = require("./config/JsonServer");
+const server = new JsonServer(3000);
+server.route(commonSettings.paths.root + "/testdb.json").start();
+
+process.env.NODE_ENV = "testd";
 
 /**
  * @link https://webpack.github.io/docs/configuration.html#cache
@@ -45,15 +45,13 @@ commonSettings.devtool = "inline-source-map";
 
 commonSettings.module.preLoaders.push({ test: /.jsx?$/, loader: "eslint", exclude: /node_modules/ });
 
-ConfigUtils.createJsonServer(3001, commonSettings.paths.root + "/testdb.json", "/files", "temp");
-
 module.exports = function configure(config) {
     config.set({
         colors: true,
-        captureTimeout: 30000,
-        browserDisconnectTimeout: 30000,
+        captureTimeout: 3000,
+        browserDisconnectTimeout: 3000,
         browserDisconnectTolerance: 1,
-        browserNoActivityTimeout: 600000,
+        browserNoActivityTimeout: 60000,
         browsers: ["Chrome_DEV"],
         singleRun: false,
         frameworks: ["mocha"],

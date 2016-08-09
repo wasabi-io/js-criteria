@@ -1,4 +1,3 @@
-process.env.NODE_ENV = "production";
 const webpack = require("webpack");
 
 /**
@@ -7,7 +6,7 @@ const webpack = require("webpack");
 /**
  * import common webpack settings
  */
-const commonSettings = require("./webpack.config.common.js")("/src", "/dist", "__test__");
+const commonSettings = require("./webpack.config.common.js")("src", "dist", "__test__");
 
 
 /**
@@ -41,7 +40,7 @@ commonSettings.plugins.push(new webpack.optimize.MinChunkSizePlugin({ minChunkSi
  * @type {{root: *[]}}
  */
 commonSettings.entry = {
-    "js-criteria": "../src/index.js"
+    "robe-react-commons": "../src/index.js"
 };
 
 /**
@@ -53,11 +52,10 @@ commonSettings.entry = {
 commonSettings.devtool = "source-map";
 
 
-
 commonSettings.output = {
     path: commonSettings.paths.build,
     filename: "[name].min.js",
-    library: "js-criteria",
+    library: "JsCriteria",
     libraryTarget: "umd"
 };
 

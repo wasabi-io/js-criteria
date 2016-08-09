@@ -1,14 +1,15 @@
-process.env.NODE_ENV = "test";
 /**
  * import common webpack settings
  */
-const commonSettings = require("./webpack.config.common.js")("/site", "/build", "__test__", "/src");
+const commonSettings = require("./webpack.config.common.js")("src", "dist", "__test__");
 
 /**
  * Json Server
  * @type {config|exports|module.exports}
  */
-const ConfigUtils = require("./ConfigUtil");
+const JsonServer = require("./config/JsonServer");
+const server = new JsonServer(3000);
+server.route(commonSettings.paths.root + "/testdb.json").start();
 
 /**
  * @link https://webpack.github.io/docs/configuration.html#cache
@@ -37,14 +38,14 @@ commonSettings.debug = true;
  * source-map - A SourceMap is emitted. See also output.sourceMapFilename.
  * @type {string}
  */
-commonSettings.devtool = "eval-source-map";
+commonSettings.devtool = "source-map";
 
 commonSettings.module.preLoaders.push({ test: /.jsx?$/, loader: "eslint", exclude: /node_modules/ });
 commonSettings.module.loaders.push({
-        test: /\.jsx?$/,
-        exclude: /(__test__|node_modules|bower_components)\//,
-        loader: "isparta"
-    }
+    test: /\.jsx?/,
+    exclude: /(__test__|node_modules|bower_components)\//,
+    loader: "isparta"
+}
 );
 
 // *optional* isparta options: istanbul behind isparta will use it
@@ -57,7 +58,6 @@ commonSettings.isparta = {
     }
 };
 
-ConfigUtils.createJsonServer(3000, commonSettings.paths.root + "/testdb.json", "/files", "temp");
 module.exports = function configure(config) {
     config.set({
         captureTimeout: 3000,

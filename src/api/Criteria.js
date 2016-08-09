@@ -1,10 +1,10 @@
+import Binder from "../util/Binder";
 import Restrictions from "./Restrictions";
 
 /**
  * Criteria Class to provide query on json data
  */
-class Criteria {
-
+class Criteria extends Binder {
 
     /**
      * Given map array
@@ -43,6 +43,7 @@ class Criteria {
      * @param {Array<Map>} mapArray
      */
     constructor(mapArray: Array<Map>) {
+        super();
         this.__mapArray = mapArray;
         this.__maxResult = mapArray.length;
     }

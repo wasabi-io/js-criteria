@@ -1,8 +1,9 @@
+import Binder from "../util/Binder";
 import Validation from "../util/Validation";
 /**
  * Resrictions to constrain the results to be retrieved.
  */
-class Restrictions {
+class Restrictions extends Binder {
 
 
     /**

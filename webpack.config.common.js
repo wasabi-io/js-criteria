@@ -52,7 +52,6 @@ function InitConfiguration(src, build, test, lib) {
          * @link https://webpack.github.io/docs/configuration.html#module
          */
         module: {
-            noParse: [/autoit.js/],
             /**
              * @link https://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
              */
@@ -67,11 +66,11 @@ function InitConfiguration(src, build, test, lib) {
                      * @link https://github.com/gaearon/react-hot-loader
                      * npm install react-hot-loader --save-dev
                      */
-                    test: /\.jsx?$/,
+                    test: /\.js?$|\.jsx?$/,
                     loader: "babel",
                     loaders: ["babel"],
                     exclude: /(node_modules|bower_components|fonts)/,
-                    include: paths.lib ? [paths.app, paths.lib, paths.test] : [paths.app, paths.test],
+                    include: [paths.app, paths.test],
                     query: {
                         presets: [
                             "es2015",
