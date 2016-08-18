@@ -23,7 +23,7 @@ class Criteria extends Binder {
      * @type {number}
      * @private
      */
-    __maxResult: number ;
+    __maxResult: number;
     /**
      *
      * @type {Array<Function>}
@@ -52,14 +52,14 @@ class Criteria extends Binder {
      * @param name
      * @param alias
      */
-    createAlias (name: string, alias: string) {
+    createAlias(name: string, alias: string) {
         this.__aliases[name] = alias;
     }
     /**
      *
      * @returns {number}
      */
-    getFirstResult (): number {
+    getFirstResult(): number {
         return this.__firstResult;
     }
 
@@ -67,7 +67,7 @@ class Criteria extends Binder {
      *
      * @returns {number}
      */
-    getMaxResult (): number {
+    getMaxResult(): number {
         return this.__maxResult;
     }
 
@@ -75,7 +75,7 @@ class Criteria extends Binder {
      *
      * @returns {Array<Function>}
      */
-    getRestrictions (): Array<Function> {
+    getRestrictions(): Array<Function> {
         return this.__restrictions;
     }
 
@@ -83,23 +83,40 @@ class Criteria extends Binder {
      *
      * @param {Function} restriction
      */
-    add (restriction: Function) {
+    add(restriction: Function) {
         this.__restrictions.push(restriction);
+    }
+
+
+    /**
+     *
+     * @param {Array<Function>} restrictions
+     */
+    addAll(restrictions: Array<Function>) {
+        this.__restrictions = this.__restrictions.concat(restrictions);
     }
 
     /**
      *
      * @param {Function} order
      */
-    addOrder (order: Function) {
+    addOrder(order: Function) {
         this.__order.push(order);
+    }
+
+    /**
+    *
+    * @param {Array<Function>} orders
+    */
+    addOrderAll(orders: Array<Function>) {
+        this.__order = this.__order.concat(orders);
     }
 
     /**
      *
      * @param {number} first
      */
-    setFirstResult (first: number) {
+    setFirstResult(first: number) {
         this.__firstResult = first - 1;
     }
 
@@ -107,7 +124,7 @@ class Criteria extends Binder {
      *
      * @param {number} max
      */
-    setMaxResults (max: number) {
+    setMaxResults(max: number) {
         this.__maxResult = max;
     }
 
@@ -115,7 +132,7 @@ class Criteria extends Binder {
      *
      * @return {any}
      */
-    list (): any {
+    list(): any {
         let dataArray = this.__mapArray;
         let first = this.__firstResult;
         let last = this.__firstResult + this.__maxResult;
@@ -136,9 +153,9 @@ class Criteria extends Binder {
         **/
         result = [];
         let andOperation = null;
-        if(!this.__restrictions || this.__restrictions === 0 ) {
+        if (!this.__restrictions || this.__restrictions === 0) {
             andOperation = (): boolean => { return true; };
-        } else if( this.__restrictions.length === 1 ){
+        } else if (this.__restrictions.length === 1) {
             andOperation = this.__restrictions[0];
         } else {
             andOperation = Restrictions.and.apply(Restrictions, this.__restrictions);
