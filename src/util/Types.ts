@@ -3,14 +3,15 @@ const TO_STRING = {
     String: toString.call("")
 };
 
+// Provides most used operations and validations on all types.
 export default class Types {
     /**
-     *
-     * @param element
+     * checks given object is string or not.
+     * @param obj
      * @return {boolean}
      * @public
      */
-    public static isString(element: any): boolean {
-        return toString.call(element) === TO_STRING.String;
+    public static isString(obj: any): boolean {
+        return toString.call(obj) === TO_STRING.String;
     }
 }

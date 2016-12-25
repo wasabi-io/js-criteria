@@ -1,6 +1,5 @@
 /**
  * A singleton class which implements mostly used string operations.
- *
  * @class Strings
  */
 class Strings {

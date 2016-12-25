@@ -1,7 +1,7 @@
 import Restrictions from "./Restrictions";
 
 /**
- * Resrictions to constrain the results to be retrieved.
+ * Property Resrictions to constrain the results to be retrieved.
  */
 class PropertyRestrictions {
     private name;
@@ -159,7 +159,15 @@ class PropertyRestrictions {
     }
 }
 
+/**
+ * Provide to create restriction by select key of data.
+ */
 class Property {
+    /**
+     * method keep key and return some restrictions to apply the data by given key.
+     * @param name
+     * @return {PropertyRestrictions}
+     */
     static forName(name: string): PropertyRestrictions {
         return new PropertyRestrictions(name);
     }

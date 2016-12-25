@@ -1,9 +1,10 @@
 /**
- * Provide ordering to the result set..
+ * Provides ordering to the result set..
  */
 class Order {
     /**
      *
+     * Sorts ascending the data by given key.
      * @param {string} key
      * @return {Function}
      */
@@ -11,7 +12,7 @@ class Order {
         return Order.sort(key, false);
     }
     /**
-     *
+     * Sorts descending given data by given key.
      * @param {string} key
      * @return {Function}
      */
@@ -21,6 +22,7 @@ class Order {
 
     /**
      *
+     * Sorts given data by given key and sorted type.
      * @param {string} key
      * @param {boolean} isDesc
      * @return {Function}

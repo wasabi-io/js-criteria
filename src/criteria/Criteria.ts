@@ -1,37 +1,37 @@
 import Restrictions from "./Restrictions";
 
 /**
- *
+ * Provides create criteria on object[] data.
  */
 export default class Criteria <E> {
 
     /**
-     *
+     * Holds given original data list which criteria work on.
      */
-    dataList: E[];
+    private dataList: E[];
     /**
-     *
+     * Holds added restrictions to constrain the results to be retrieved.
      * @type {Array}
      */
-    restrictions: ((e: E) => boolean)[] = [];
+    private restrictions: ((e: E) => boolean)[] = [];
     /**
-     *
+     *  Holds given orders to ordering the result set.
      * @type {Array}
      */
-    sortings: ((list: E[]) => E[])[] = [];
+    private sortings: ((list: E[]) => E[])[] = [];
     /**
-     *
+     * Holds  an integer that represents the first row in your result set, starting with row 0.
      * @type {number}
      */
-    firstResult : number = 0;
+    private firstResult : number = 0;
     /**
-     *
+     * Holds to retrieve a fixed number maxResults of objects from the given data.
      * @type {number}
      */
-    maxResults: number = 0;
+    private maxResults: number = 0;
 
     /**
-     *
+     *  Create a new Criteria, by given data.
      * @param dataList
      */
     public constructor(dataList: E[]) {
@@ -62,17 +62,31 @@ export default class Criteria <E> {
         return this;
     };
 
+    /**
+     * This method takes an integer that represents the first row in your result set, starting with row 0.
+     * @param firstResult
+     * @return {Criteria}
+     */
     public setFirstResult = (firstResult: number): Criteria<E> => {
         this.firstResult = firstResult;
         return this;
     };
 
+    /**
+     * This method tells Criteria to retrieve a fixed number maxResults of objects.
+     * @param maxResults
+     * @return {Criteria}
+     */
     public setMaxResults(maxResults: number): Criteria<E> {
         this.maxResults = maxResults;
         return this;
     }
 
-    public list = <D, C>(): {data: D, totalCount: C} => {
+    /**
+     * Get the results.
+     * @return {{data: any[], totalCount: number}}
+     */
+    public list = (): {data: any[], totalCount: number} => {
         let dataArray = this.dataList;
         let first = this.firstResult;
         let last = this.firstResult + this.maxResults;
