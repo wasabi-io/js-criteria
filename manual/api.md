@@ -3,7 +3,7 @@
 #### Criteria 
 
 ```javascript
-    import Criteria from "js-criteria/lib/api/Criteria" 
+    import Criteria from "js-criteria/lib/criteria/Criteria" 
 ```
 
 ##### init criteria : create new criteria with init list of records
@@ -74,7 +74,7 @@
 #### Restrictions 
 
 ```javascript
-    import Restrictions from "js-criteria/lib/api/Restrictions" 
+    import Restrictions from "js-criteria/lib/criteria/Restrictions" 
 ```
  
 ##### op() : Operator Evaluation
@@ -212,7 +212,7 @@
 #### Order
 
 ```javascript
-    import Order from "js-criteria/lib/api/Order" 
+    import Order from "js-criteria/lib/criteria/Order" 
 ```
 
 ##### asc

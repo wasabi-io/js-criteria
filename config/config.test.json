@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../src",
+    "rootDirs": ["../src"],
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true,
+    "inlineSourceMap": true,
+    "sourceMap": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "../src"
+  ],
+  "filesGlob": [
+    "../typings/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

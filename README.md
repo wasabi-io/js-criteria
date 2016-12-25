@@ -3,7 +3,6 @@
 #### A criteria library on json , javascript map object.  
 
 [![Build Status](https://travis-ci.org/kbukum/js-criteria.svg?branch=master)](https://travis-ci.org/kbukum/js-criteria)
-[![Docs Coverage](https://doc.esdoc.org/github.com/kbukum/js-criteria/badge.svg)](https://doc.esdoc.org/github.com/kbukum/js-criteria)
 [![codecov](https://codecov.io/gh/kbukum/js-criteria/branch/master/graph/badge.svg)](https://codecov.io/gh/kbukum/js-criteria)
 
 
@@ -13,14 +12,21 @@ Aims to be a complete solution for query on json and javascript map objects. All
 
 ##### What's inside
 
-* [Webpack](https://webpack.github.io/) for all development (server,hotload etc.) and build (package, optimize, etc.) needs.
-* [Babel](https://babeljs.io/flow) for writing codes with ES6 syntax and transpiling them browser compatible codes. 
-* [ESLint](http://eslint.org/) for protecting our nice formatted codes.
-* [Flow](http://flowtype.org/) for type checking.
+* [Typescript](https://www.typescriptlang.org/) for all development.
 * [Karma](https://karma-runner.github.io/0.13/index.html) for running tests.
+* [Karma-Type-Script](https://www.npmjs.com/package/karma-typescript) for running tests and code coverage
 * [Chai](http://chaijs.com/) for asserting test errors.
-* [Isparta](https://github.com/douglasduteil/isparta) for ES6 code coverage.
-* [Istanbul](https://github.com/gotwarlost/istanbul) for code coveragereporting.
+
+#### Library Types
+
+* CommonJs - You can use this library with webpack it is default.
+  
+  `import Criteria from "js-criteria/lib/criteria/Criteria";`
+  
+* AMD - if you want to import files as lazy then you can use ./amd
+    - more information about AMD : http://requirejs.org/docs/whyamd.html
+* UMD - if you want to import files as lazy then you can use ./umd
+    - more information about UMD : https://github.com/umdjs/umd
 
 ### Quick Start
 
@@ -31,9 +37,9 @@ npm install js-criteria --save
 ```
 You can import this project in 2 ways.
 
-1. Partial import. For ex. `import Criteria from "js-criteria/lib/api/Criteria";`
+1. Partial import. For ex. `import Criteria from "js-criteria/lib/criteria/Criteria";`
 2. All-in-one, minified, optimized single js. For ex. **TODO: example coming soon.**
-
+    
 * [see api detail for usage](./manual/api.md)
 * Example Data 
 
@@ -105,7 +111,12 @@ in [package.json](./package.json) file.
 If you need just to build the app (without running a dev server), simply run:
 
 ```shell
-$ npm run-script build
+$ npm run build
+```
+or
+
+```shell
+$ yarn build
 ```
  
 ####  How to run Unit Tests.
@@ -113,3 +124,9 @@ $ npm run-script build
 ```shell
 $ npm test
 ```
+or
+
+```shell
+$ yarn test
+```
+ 

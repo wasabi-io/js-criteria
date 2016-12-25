@@ -8,4 +8,3 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - bash <(curl --data "gitUrl=git%40github.com%kbukum%2Fjs-criteria.git" https://doc.esdoc.org/api/create)
