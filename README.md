@@ -5,6 +5,9 @@
 [![Build Status](https://travis-ci.org/kbukum/js-criteria.svg?branch=master)](https://travis-ci.org/kbukum/js-criteria)
 [![codecov](https://codecov.io/gh/kbukum/js-criteria/branch/master/graph/badge.svg)](https://codecov.io/gh/kbukum/js-criteria)
 
+##### Docs
+* [Docs](https://kbukum.github.io/js-criteria) documentation.
+
 
 ##### Motivation
 
