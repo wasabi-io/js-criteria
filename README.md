@@ -24,7 +24,7 @@ Aims to be a complete solution for query on json and javascript map objects. All
 
 * CommonJs - You can use this library with webpack it is default.
   
-  `import Criteria from "js-criteria/lib/criteria/Criteria";`
+  `import Criteria from "js-criteria/lib/api/Criteria";`
   
 * AMD - if you want to import files as lazy then you can use ./amd
     - more information about AMD : http://requirejs.org/docs/whyamd.html
@@ -40,7 +40,7 @@ npm install js-criteria --save
 ```
 You can import this project in 2 ways.
 
-1. Partial import. For ex. `import Criteria from "js-criteria/lib/criteria/Criteria";`
+1. Partial import. For ex. `import Criteria from "js-criteria/lib/api/Criteria";`
 2. All-in-one, minified, optimized single js. For ex. **TODO: example coming soon.**
     
 * [see api detail for usage](./manual/api.md)

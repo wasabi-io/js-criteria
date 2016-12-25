@@ -1,3 +1,3 @@
-export * from "./criteria/index";
+export * from "./api/index";
 export * from "./util/index";
 
