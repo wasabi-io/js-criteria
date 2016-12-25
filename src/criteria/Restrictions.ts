@@ -83,9 +83,6 @@ class Restrictions {
      */
     public static lte(key: string, value: any): (data: any) => boolean {
         return (data: any): boolean => {
-            /* eslint-disable eqeqeq */
-            console.log(data[key]);
-            console.log(value);
             return data[key] <= value;
         };
     };

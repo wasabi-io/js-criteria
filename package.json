@@ -1,6 +1,6 @@
 {
   "name": "js-criteria",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
@@ -8,6 +8,7 @@
     "build:amd": "rimraf ./amd && tsc --project ./config/config.amd.json",
     "build:umd": "rimraf ./umd && tsc --project ./config/config.umd.json",
     "build": "npm run build:lib & npm run build:amd & npm run build:umd",
+    "testd": "karma start config/webpack.config.test.dev.js",
     "test": "karma start config/webpack.config.test.js",
     "docs": "typedoc --module commonjs --target ES5 --name JS-Criteria --readme ./README.md  --exclude **/*.spec.ts --out ./docs ./src"
   },
