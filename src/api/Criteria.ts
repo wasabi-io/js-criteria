@@ -1,5 +1,10 @@
 import Restrictions from "./Restrictions";
 
+
+export interface Query {
+    param: string,
+    ignoreList?: string[]
+}
 /**
  * Provides create criteria on object[] data.
  */
@@ -20,6 +25,12 @@ export default class Criteria <E> {
      */
     private sortings: ((list: E[]) => E[])[] = [];
     /**
+     *
+     * @type {Array}
+     */
+    private queries: Query[] = [];
+
+    /**
      * Holds  an integer that represents the first row in your result set, starting with row 0.
      * @type {number}
      */
@@ -29,7 +40,6 @@ export default class Criteria <E> {
      * @type {number}
      */
     private maxResults: number = 0;
-
     /**
      *  Create a new Criteria, by given data.
      * @param dataList
@@ -38,6 +48,13 @@ export default class Criteria <E> {
         this.dataList = dataList;
     }
 
+    /**
+     * set global query
+     * @param query
+     */
+    public addQuery(query: Query) {
+        this.queries.push(query);
+    }
     /**
      *
      * @param restriction
@@ -82,6 +99,40 @@ export default class Criteria <E> {
         return this;
     }
 
+    private static defaultTrue (data: any) : boolean {
+        return true;
+    }
+
+    private static defaultFalse (data: any) : boolean {
+        return false;
+    }
+
+    private static getQueryRestriction(instance): (data: any) => boolean  {
+        let restriction: (data: any) => boolean;
+        if(instance.queries.length > 0 ) {
+            let restrictions = [];
+            for(let i = 0 ; i < instance.queries.length; i++) {
+                let query = instance.queries[i];
+                restrictions[i] = Restrictions.query(query.param, query.ignoreList);
+            }
+            if(restrictions.length === 1) {
+                restriction = restrictions[0];
+            } else {
+                restriction = Restrictions.or.apply(undefined, restrictions);
+            }
+            return restriction;
+        }
+        return Criteria.defaultTrue;
+    }
+    private static getFilter(instance){
+        if (instance.restrictions.length === 1) {
+            return instance.restrictions[0];
+        } else if(instance.restrictions.length > 1) {
+            return Restrictions.and.apply(undefined, instance.restrictions);
+        }
+        return Criteria.defaultTrue;
+    }
+
     /**
      * Get the results.
      * @return {{data: any[], totalCount: number}}
@@ -96,23 +147,19 @@ export default class Criteria <E> {
 
         let result;
         result = [];
-        let andOperation: (e: E) => boolean = null;
-        if (!this.restrictions || this.restrictions.length === 0) {
-            andOperation = (): boolean => { return true; };
-        } else if (this.restrictions.length === 1) {
-            andOperation = this.restrictions[0];
-        } else {
-            andOperation = Restrictions.and.apply(undefined, this.restrictions);
-        }
-        let i = 0;
-        for (; i < dataArray.length; i++) {
+
+        let query = Criteria.getQueryRestriction(this);
+        let filter = Criteria.getFilter(this);
+        for (let i = 0; i < dataArray.length; i++) {
             let data = dataArray[i];
-            if (andOperation(data)) {
+            let isFilterOk = filter(data);
+            let isQueryOk = query(data);
+            if (isFilterOk && isQueryOk) {
                 result.push(data);
             }
         }
 
-        for (i = 0; i < this.sortings.length; i++) {
+        for (let i = 0; i < this.sortings.length; i++) {
             result = this.sortings[i](result);
         }
         /** } **/

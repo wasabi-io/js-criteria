@@ -1,4 +1,5 @@
 import Types from "../util/Types";
+import Objects from "../util/Objects";
 import Strings from "../util/Strings";
 /**
  * Resrictions to constrain the results to be retrieved.
@@ -129,38 +130,34 @@ class Restrictions {
     }
 
     /**
-     * @description checks given value of data by key like given value by  fromLeft and fromRight parameters.
-     * @param {string} key
-     * @param {any} value
-     * @param {boolean} fromLeft
-     * @param {boolean} fromRight
-     * @param {boolean} caseSensitive
-     * @returns {Function}
-     * @private
+     *
+     * @param data
+     * @param key
+     * @param value
+     * @param fromLeft
+     * @param fromRight
+     * @param caseSensitive
+     * @return {boolean}
      */
-    private static __like(key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive: boolean): (data: any) => boolean{
-        return (data: any): boolean => {
-            let propValue = data[key];
-            if (propValue && typeof propValue !== "string") {
-                propValue = propValue.toString();
-            }
-            if (!caseSensitive) {
-                value = value.toLocaleLowerCase();
-                propValue = propValue.toLocaleLowerCase();
-            }
+    private static checkLike(data: any, key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive?: boolean ) {
+        let propValue = data[key];
+        if (propValue && typeof propValue !== "string") {
+            propValue = propValue.toString();
+        }
+        if (!caseSensitive) {
+            value = value.toLocaleLowerCase();
+            propValue = propValue.toLocaleLowerCase();
+        }
 
-            if (fromLeft && fromRight) {
-                return propValue.indexOf(value) > -1;
-            } else if (fromLeft) {
-                return Strings.startsWith(propValue, value);
-            } else if (fromRight) {
-                return Strings.endsWith(propValue, value);
-            } else {
-                return this.__eq(key, value, caseSensitive)(data);
-            }
-
-
-        };
+        if (fromLeft && fromRight) {
+            return propValue.indexOf(value) > -1;
+        } else if (fromLeft) {
+            return Strings.startsWith(propValue, value);
+        } else if (fromRight) {
+            return Strings.endsWith(propValue, value);
+        } else {
+            return this.__eq(key, value, caseSensitive)(data);
+        }
     }
 
     /**
@@ -177,7 +174,9 @@ class Restrictions {
         let startIndex = fromRight ? 1 : 0;
         let endIndex = fromLeft ? value.length - 1 : value.length;
         value = value.substring(startIndex, endIndex);
-        return this.__like(key, value, fromLeft, fromRight, caseSensitive);
+        return (data: any) => {
+            return Restrictions.checkLike(data, key, value, fromLeft, fromRight, caseSensitive);
+        };
     }
 
     /**
@@ -188,7 +187,9 @@ class Restrictions {
      * @returns {Function}
      */
     public static startsWith(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return this.__like(key, value, true, false, caseSensitive);
+        return (data: any) => {
+            return Restrictions.checkLike(data, key, value, true, false, caseSensitive)
+        };
     }
 
     /**
@@ -199,7 +200,9 @@ class Restrictions {
      * @returns {Function}
      */
     public static endsWith(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return this.__like(key, value, false, true, caseSensitive);
+        return (data: any) => {
+            return Restrictions.checkLike(data, key, value, false, true, caseSensitive)
+        };
     }
 
     /**
@@ -210,7 +213,9 @@ class Restrictions {
      * @returns {Function}
      */
     public static contains(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return this.__like(key, value, true, true, caseSensitive);
+        return (data: any) => {
+            return Restrictions.checkLike(data, key, value, true, true, caseSensitive)
+        };
     }
 
     /**
@@ -278,6 +283,24 @@ class Restrictions {
         return (data: any): boolean => {
             let propValue = data[key];
             return (propValue === undefined || propValue === null) || propValue === "";
+        };
+    }
+
+    /**
+     *
+     * @param value
+     * @param ignoreList
+     * @return {(data:any)=>boolean}
+     */
+    public static query(value: string, ignoreList?: string[]): (data: any) => boolean {
+        return (data: any): boolean => {
+            let result = true;
+            Objects.forEach(data, (item, key) => {
+                if(typeof item === "string") {
+                    result = result &&  Restrictions.checkLike(data, key, value, true, true);
+                }
+            }, ignoreList);
+            return result;
         };
     }
 

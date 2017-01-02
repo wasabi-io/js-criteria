@@ -40,25 +40,16 @@ module.exports = function(config) {
     config.set({
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: "../",
+        // web server port
+        port: 9876,
         // enable / disable colors in the output (reporters and logs)
         colors: true,
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: false,
-        captureTimeout: 3000,
-        browserDisconnectTimeout: 3000,
-        browserDisconnectTolerance: 1,
-        browserNoActivityTimeout: 60000,
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ["Chrome_travis_ci"],
-        customLaunchers: {
-            Chrome_travis_ci: {
-                base: "Chrome",
-                flags: ["--no-sandbox"]
-            }
-        },
+        browsers: ["Chrome"],
         plugins: [
             "karma-typescript",
             "karma-webpack",
@@ -76,8 +67,8 @@ module.exports = function(config) {
         frameworks: ["mocha"],
         // list of files / patterns to load in the browser
         files: [
-            "src/index.ts",
-            "src/**/*.spec.ts"
+            "./src/index.ts",
+            "./src/**/*.spec.ts"
         ],
         // list of files to exclude
         exclude: [
@@ -85,8 +76,8 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            "src/index.ts": ["webpack"],
-            "src/**/*.spec.ts": ["webpack"]
+            "./src/index.ts": ["webpack"],
+            "./src/**/*.spec.ts": ["webpack"]
         },
         webpack: webpackSettings,
         webpackServer: {

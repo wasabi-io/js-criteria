@@ -86,4 +86,48 @@ describe("criteria/Criteria.ts", () => {
         assert.deepEqual(expectedData, criteria.list());
     });
 
+
+    it("addQuery", () => {
+        let data = [
+            {
+                name: "Nami",
+                age: 16
+            },
+            {
+                name: "Monkey D. Luffy",
+                age: 16
+            },
+            {
+                name: "Gol D. Roger",
+                age: 32
+            },
+            {
+                name: "Chopper",
+                age: 16
+            }
+        ];
+
+        let expectedData = [
+            {
+                name: "Monkey D. Luffy",
+                age: 16
+            },
+            {
+                name: "Gol D. Roger",
+                age: 32
+            },
+            {
+                name: "Chopper",
+                age: 16
+            }
+        ];
+
+        let criteria = new Criteria(data);
+        criteria.addQuery({
+            param: "o"
+        });
+        assert.deepEqual(expectedData, criteria.list());
+    });
+
+
 });
