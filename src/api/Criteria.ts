@@ -1,3 +1,4 @@
+import Type from "../lang/Type";
 import Restrictions from "./Restrictions";
 
 
@@ -8,7 +9,7 @@ export interface Query {
 /**
  * Provides create criteria on object[] data.
  */
-export default class Criteria <E> {
+export default class Criteria <E> extends Type {
 
     /**
      * Holds given original data list which criteria work on.
@@ -45,6 +46,7 @@ export default class Criteria <E> {
      * @param dataList
      */
     public constructor(dataList: E[]) {
+        super();
         this.dataList = dataList;
     }
 

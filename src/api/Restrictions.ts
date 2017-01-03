@@ -294,13 +294,15 @@ class Restrictions {
      */
     public static query(value: string, ignoreList?: string[]): (data: any) => boolean {
         return (data: any): boolean => {
-            let result = true;
+            let isSet = false;
+            let result = false;
             Objects.forEach(data, (item, key) => {
                 if(typeof item === "string") {
-                    result = result &&  Restrictions.checkLike(data, key, value, true, true);
+                    result = result || Restrictions.checkLike(data, key, value, true, true);
+                    isSet = true;
                 }
             }, ignoreList);
-            return result;
+            return isSet ? result : true;
         };
     }
 

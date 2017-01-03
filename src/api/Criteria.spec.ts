@@ -88,7 +88,7 @@ describe("criteria/Criteria.ts", () => {
 
 
     it("addQuery", () => {
-        let data = [
+        let data: any = [
             {
                 name: "Nami",
                 age: 16
@@ -107,7 +107,7 @@ describe("criteria/Criteria.ts", () => {
             }
         ];
 
-        let expectedData = [
+        let expectedData: any = [
             {
                 name: "Monkey D. Luffy",
                 age: 16
@@ -127,6 +127,24 @@ describe("criteria/Criteria.ts", () => {
             value: "o"
         });
         assert.deepEqual(expectedData, criteria.list());
+
+
+        let data2: any = [
+            { id: 1, name: "John", surname: "Doe" },
+            { name: "Jane", surname: "Roe", id: 2 }
+         ];
+
+        let expectedData2: any = [
+            { id: 1, name: "John", surname: "Doe" },
+            { id: 2, name: "Jane", surname: "Roe"}
+        ];
+
+        criteria = new Criteria(data2);
+        criteria.addQuery({
+            value: "J"
+        });
+        console.log(criteria.list());
+        assert.deepEqual(expectedData2, criteria.list());
     });
 
 
