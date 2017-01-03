@@ -72,6 +72,14 @@ You can import this project in 2 ways.
 ```javascript
     const criteria = new Criteria(dataList);  
 ```
+* add Query
+
+```javascript
+criteria.addQuery({
+    value: "",
+    ignoreList: ["age"]
+});
+```
 
 
 * add Restrictions 

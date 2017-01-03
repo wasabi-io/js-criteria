@@ -2,7 +2,7 @@ import Restrictions from "./Restrictions";
 
 
 export interface Query {
-    param: string,
+    value: string,
     ignoreList?: string[]
 }
 /**
@@ -113,7 +113,7 @@ export default class Criteria <E> {
             let restrictions = [];
             for(let i = 0 ; i < instance.queries.length; i++) {
                 let query = instance.queries[i];
-                restrictions[i] = Restrictions.query(query.param, query.ignoreList);
+                restrictions[i] = Restrictions.query(query.value, query.ignoreList);
             }
             if(restrictions.length === 1) {
                 restriction = restrictions[0];

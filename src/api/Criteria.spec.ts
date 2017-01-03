@@ -124,7 +124,7 @@ describe("criteria/Criteria.ts", () => {
 
         let criteria = new Criteria(data);
         criteria.addQuery({
-            param: "o"
+            value: "o"
         });
         assert.deepEqual(expectedData, criteria.list());
     });

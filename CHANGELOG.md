@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3
+   * fixed *Restrictions* class name.
+   * changed query.param as query.value
+   
 ## 1.0.2
    * added *addQuery* method to **Criteria** 
   
