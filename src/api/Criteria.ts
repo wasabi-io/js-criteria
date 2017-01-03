@@ -62,7 +62,7 @@ export default class Criteria <E> extends Type {
      * @param restriction
      * @return {Criteria}
      */
-    public add = (restriction: (e: E) => boolean): Criteria<E> => {
+    public add(restriction: (e: E) => boolean): Criteria<E> {
         if(restriction) {
             this.restrictions[this.restrictions.length] = restriction;
         }
@@ -74,7 +74,7 @@ export default class Criteria <E> extends Type {
      * @param sorting
      * @return {Criteria}
      */
-    public addOrder = (sorting: (list: E[]) => E[]): Criteria<E> => {
+    public addOrder(sorting: (list: E[]) => E[]): Criteria<E> {
         if(sorting) {
             this.sortings[this.sortings.length] = sorting;
         }
@@ -86,7 +86,7 @@ export default class Criteria <E> extends Type {
      * @param firstResult
      * @return {Criteria}
      */
-    public setFirstResult = (firstResult: number): Criteria<E> => {
+    public setFirstResult (firstResult: number): Criteria<E> {
         this.firstResult = firstResult;
         return this;
     };
@@ -139,7 +139,7 @@ export default class Criteria <E> extends Type {
      * Get the results.
      * @return {{data: any[], totalCount: number}}
      */
-    public list = (): {data: any[], totalCount: number} => {
+    public list(): {data: any[], totalCount: number} {
         let dataArray = this.dataList;
         let first = this.firstResult;
         let last = this.firstResult + this.maxResults;

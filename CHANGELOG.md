@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.4
+   * fixed query check problem.
+   
 ## 1.0.3
    * fixed *Restrictions* class name.
    * changed query.param as query.value
