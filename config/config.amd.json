@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "../src",
     "rootDirs": ["../src"],
-    "outDir": "../build/amd",
+    "outDir": "../dist/amd",
     "module": "amd",
     "target": "es5",
     "allowJs": true,

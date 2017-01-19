@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build:lib": "rimraf ./lib && tsc --project ./config/config.lib.json",
-    "build:amd": "rimraf ./amd && tsc --project ./config/config.amd.json",
-    "build:umd": "rimraf ./umd && tsc --project ./config/config.umd.json",
+    "build:amd": "rimraf ./dist/amd && tsc --project ./config/config.amd.json",
+    "build:umd": "rimraf ./dist/umd && tsc --project ./config/config.umd.json",
     "build": "npm run build:lib & npm run build:amd & npm run build:umd",
     "testd": "karma start config/webpack.config.test.dev.js",
     "test": "karma start config/webpack.config.test.js",

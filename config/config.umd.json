@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "../src",
     "rootDirs": ["../src"],
-    "outDir": "../build/umd",
+    "outDir": "../dist/umd",
     "module": "umd",
     "target": "es5",
     "allowJs": true,
