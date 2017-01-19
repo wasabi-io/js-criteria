@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.6
+   * fixed npm build problem. recreate .npmignore file.
+   
 ## 1.0.4
    * fixed query check problem.
    
