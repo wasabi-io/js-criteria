@@ -1,6 +1,8 @@
 /**
  * Provides ordering to the result set..
  */
+import {Props} from "wasabi-common";
+
 class Order {
     /**
      *
@@ -8,15 +10,16 @@ class Order {
      * @param {string} key
      * @return {Function}
      */
-    public static asc (key: string): (dataList: any[]) => any[] {
+    public static asc(key: string): (dataList: any[]) => any[] {
         return Order.sort(key, false);
     }
+
     /**
      * Sorts descending given data by given key.
      * @param {string} key
      * @return {Function}
      */
-    public static desc (key: string): (dataList: any[]) => any[] {
+    public static desc(key: string): (dataList: any[]) => any[] {
         return Order.sort(key, true);
     }
 
@@ -28,13 +31,13 @@ class Order {
      * @return {Function}
      * @private
      */
-    private static sort (key: string, isDesc: boolean): (dataList: any[]) => any[] {
-        let less: number = isDesc ? 1 : -1;
-        let greater: number = isDesc ? -1 : 1;
+    private static sort(key: string, isDesc: boolean): (dataList: any[]) => any[] {
+        const less: number = isDesc ? 1 : -1;
+        const greater: number = isDesc ? -1 : 1;
         return (dataList: any[]): any[] => {
-            dataList.sort(function(source: any[], destination: any[]): number {
-                let sourceValue = source[key];
-                let destinationValue = destination[key];
+            dataList.sort((source: Props<any>, destination: Props<any>): number => {
+                const sourceValue = source[key];
+                const destinationValue = destination[key];
                 if (sourceValue === destinationValue) {
                     return 0;
                 }

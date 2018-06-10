@@ -1,9 +1,9 @@
-import Property from "./Property";
-import { assert } from "chai";
+import Property from "js-criteria/lib/api/Property";
+import {assert} from "chai";
 
-describe("criteria/Property.ts", () => {
+describe("api/Property", () => {
     it("forName.op", () => {
-        let data = {
+        const data = {
             name: "Gol D Roger"
         };
         let restriction = Property.forName("name").op("===", "Gol D Roger");
@@ -14,7 +14,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.eq", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -32,11 +32,11 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.lt", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
-        let restriction =Property.forName("name").lt(6);
+        let restriction = Property.forName("name").lt(6);
         assert.isOk(restriction(data));
 
         restriction = Property.forName("name").lt(5);
@@ -47,7 +47,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.lte", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -62,7 +62,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.gt", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -77,7 +77,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.gte", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -92,7 +92,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.between", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -102,12 +102,12 @@ describe("criteria/Property.ts", () => {
         restriction = Property.forName("name").between(4, 3);
         assert.isNotOk(restriction(data));
 
-        restriction = Property.forName("name").between(6, 4 );
+        restriction = Property.forName("name").between(6, 4);
         assert.isOk(restriction(data));
     });
 
     it("forName.startsWith", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -131,7 +131,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.endsWith", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -155,7 +155,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.contains", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -181,9 +181,8 @@ describe("criteria/Property.ts", () => {
         assert.isNotOk(restriction(data));
     });
 
-
     it("forName.like", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -209,9 +208,8 @@ describe("criteria/Property.ts", () => {
         assert.isNotOk(restriction(data));
     });
 
-
     it("forName.in", () => {
-        let data = {
+        const data = {
             name: "Roger"
         };
 
@@ -223,7 +221,6 @@ describe("criteria/Property.ts", () => {
 
         restriction = Property.forName("name").in(["Luffy", "Nami"]);
         assert.isNotOk(restriction(data));
-
 
         restriction = Property.forName("name").in(["Roger", "Luffy", "Nami"], true);
         assert.isOk(restriction(data));
@@ -237,7 +234,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.isNull", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -250,7 +247,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.isNotNull", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -263,7 +260,7 @@ describe("criteria/Property.ts", () => {
     });
 
     it("forName.isEmpty", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -279,9 +276,8 @@ describe("criteria/Property.ts", () => {
 
     });
 
-
     it("forName.isNotEmpty", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -296,5 +292,4 @@ describe("criteria/Property.ts", () => {
         assert.isNotOk(restriction(data));
 
     });
-
 });

@@ -1,9 +1,9 @@
-import Order from "./Order";
-import { assert } from "chai";
+import Order from "js-criteria/lib/api/Order";
+import {assert} from "chai";
 
-describe("criteria/Order.ts", () => {
+describe("api/Order", () => {
     it("asc", () => {
-        let data = [
+        const data = [
             {
                 name: "Gol D. Roger",
                 age: 32
@@ -22,7 +22,7 @@ describe("criteria/Order.ts", () => {
             }
         ];
 
-        let expectedData = [
+        const expectedData = [
             {
                 name: "Chopper",
                 age: 16
@@ -44,7 +44,7 @@ describe("criteria/Order.ts", () => {
     });
 
     it("desc", () => {
-        let data = [
+        const data = [
             {
                 name: "Gol D. Roger",
                 age: 32
@@ -63,7 +63,7 @@ describe("criteria/Order.ts", () => {
             }
         ];
 
-        let expectedData = [
+        const expectedData = [
             {
                 name: "Nami",
                 age: 16

@@ -1,9 +1,9 @@
-import Restrictions from "./Restrictions";
-import { assert } from "chai";
+import Restrictions from "js-criteria/lib/api/Restrictions";
+import {assert} from "chai";
 
-describe("criteria/Restriction.ts", () => {
+describe("api/Restriction", () => {
     it("op", () => {
-        let data = {
+        const data = {
             name: "Gol D Roger"
         };
         let restriction = Restrictions.op("name", "===", "Gol D Roger");
@@ -14,7 +14,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("eq", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -32,7 +32,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("lt", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -47,7 +47,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("lte", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -62,7 +62,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("gt", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -77,7 +77,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("gte", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -92,7 +92,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("between", () => {
-        let data = {
+        const data = {
             name: 5
         };
 
@@ -102,12 +102,12 @@ describe("criteria/Restriction.ts", () => {
         restriction = Restrictions.between("name", 4, 3);
         assert.isNotOk(restriction(data));
 
-        restriction = Restrictions.between("name", 6, 4 );
+        restriction = Restrictions.between("name", 6, 4);
         assert.isOk(restriction(data));
     });
 
     it("startsWith", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -131,7 +131,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("endsWith", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -155,7 +155,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("contains", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -181,9 +181,8 @@ describe("criteria/Restriction.ts", () => {
         assert.isNotOk(restriction(data));
     });
 
-
     it("like", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -209,35 +208,33 @@ describe("criteria/Restriction.ts", () => {
         assert.isNotOk(restriction(data));
     });
 
-
     it("in", () => {
-        let data = {
+        const data = {
             name: "Roger"
         };
 
-        let restriction = Restrictions.in("name",  ["Roger", "Luffy", "Nami"]);
+        let restriction = Restrictions.in("name", ["Roger", "Luffy", "Nami"]);
         assert.isOk(restriction(data));
 
-        restriction = Restrictions.in("name",  ["roger", "luffy", "nami"]);
+        restriction = Restrictions.in("name", ["roger", "luffy", "nami"]);
         assert.isOk(restriction(data));
 
-        restriction = Restrictions.in("name",  ["Luffy", "Nami"]);
+        restriction = Restrictions.in("name", ["Luffy", "Nami"]);
         assert.isNotOk(restriction(data));
 
-
-        restriction = Restrictions.in("name",  ["Roger", "Luffy", "Nami"], true);
+        restriction = Restrictions.in("name", ["Roger", "Luffy", "Nami"], true);
         assert.isOk(restriction(data));
 
-        restriction = Restrictions.in("name",  ["roger", "luffy", "nami"], true);
+        restriction = Restrictions.in("name", ["roger", "luffy", "nami"], true);
         assert.isNotOk(restriction(data));
 
-        restriction = Restrictions.in("name",  ["Luffy", "Nami"]);
+        restriction = Restrictions.in("name", ["Luffy", "Nami"]);
         assert.isNotOk(restriction(data));
 
     });
 
     it("isNull", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -250,7 +247,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("isNotNull", () => {
-        let data = {
+        const data = {
             name: "kamil"
         };
 
@@ -263,7 +260,7 @@ describe("criteria/Restriction.ts", () => {
     });
 
     it("isEmpty", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -279,9 +276,8 @@ describe("criteria/Restriction.ts", () => {
 
     });
 
-
     it("isNotEmpty", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -297,9 +293,8 @@ describe("criteria/Restriction.ts", () => {
 
     });
 
-
     it("or", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -310,7 +305,6 @@ describe("criteria/Restriction.ts", () => {
             Restrictions.isNotEmpty("name")
         );
         assert.isOk(restriction(data));
-
 
         restriction = Restrictions.or(
             Restrictions.isNull("name"),
@@ -326,9 +320,8 @@ describe("criteria/Restriction.ts", () => {
 
     });
 
-
     it("and", () => {
-        let data = {
+        const data = {
             name: "kamil",
             deneme: ""
         };
@@ -339,7 +332,6 @@ describe("criteria/Restriction.ts", () => {
             Restrictions.isNotEmpty("name")
         );
         assert.isOk(restriction(data));
-
 
         restriction = Restrictions.and(
             Restrictions.isNull("name"),

@@ -3,11 +3,13 @@ import Restrictions from "./Restrictions";
 /**
  * Property Resrictions to constrain the results to be retrieved.
  */
-class PropertyRestrictions {
-    private name;
-    constructor(name) {
+export class PropertyRestrictions {
+    private name: string;
+
+    constructor(name: string) {
         this.name = name;
     }
+
     /**
      * @description evulates op and execute it.
      * @param {string} op
@@ -35,7 +37,7 @@ class PropertyRestrictions {
      */
     public lt(value: any): (data: any) => boolean {
         return Restrictions.lt(this.name, value);
-    };
+    }
 
     /**
      * @description checks given value of data by key less then or equals given value .
@@ -44,7 +46,7 @@ class PropertyRestrictions {
      */
     public lte(value: any): (data: any) => boolean {
         return Restrictions.lte(this.name, value);
-    };
+    }
 
     /**
      * @description checks given value of data by key greater then given value .
@@ -53,7 +55,7 @@ class PropertyRestrictions {
      */
     public gt(value: any): (data: any) => boolean {
         return Restrictions.gt(this.name, value);
-    };
+    }
 
     /**
      * @description checks given value of data by key greater then or equals given value .
@@ -62,7 +64,7 @@ class PropertyRestrictions {
      */
     public gte(value: any): (data: any) => boolean {
         return Restrictions.gte(this.name, value);
-    };
+    }
 
     /**
      * @description checks given value of data by key between given startValue and given endValue.
@@ -71,7 +73,7 @@ class PropertyRestrictions {
      * @param {any} endValue
      * @return {Function}
      */
-    public between(startValue: any, endValue: any): (data: any) => boolean{
+    public between(startValue: any, endValue: any): (data: any) => boolean {
         return Restrictions.between(this.name, startValue, endValue);
     }
 
@@ -113,7 +115,7 @@ class PropertyRestrictions {
      */
     public like(value: any, caseSensitive?: boolean): (data: any) => boolean {
         return Restrictions.like(this.name, value, caseSensitive);
-    };
+    }
 
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
@@ -122,7 +124,7 @@ class PropertyRestrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public in(values: any[], caseSensitive?: boolean) : (data: any) => boolean {
+    public in(values: any[], caseSensitive?: boolean): (data: any) => boolean {
         return Restrictions.in(this.name, values, caseSensitive);
     }
 
@@ -162,7 +164,7 @@ class PropertyRestrictions {
 /**
  * Provide to create restriction by select key of data.
  */
-class Property {
+export default class Property {
     /**
      * method keep key and return some restrictions to apply the data by given key.
      * @param name
@@ -172,5 +174,3 @@ class Property {
         return new PropertyRestrictions(name);
     }
 }
-
-export default Property;

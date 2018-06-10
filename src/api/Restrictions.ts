@@ -1,26 +1,30 @@
-import Types from "../util/Types";
-import Objects from "../util/Objects";
-import Strings from "../util/Strings";
+import Validations from "wasabi-common/lib/util/Validations";
+import Strings from "wasabi-common/lib/types/Strings";
+import Objects, {Props} from "wasabi-common/lib/types/Objects";
+
+export interface Predicate {
+    (data: Props<any>): boolean;
+}
+
 /**
  * Resrictions to constrain the results to be retrieved.
  */
-class Restrictions {
+export default class Restrictions {
     /**
      * @description evulates op and execute it.
      * @param {string} op
      * @param {string} key
      * @param {any} value
-     * @return {(data: any) => boolean}
+     * @return {Predicate}
      */
-    public static op(key: string, op: string, value: any): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static op(key: string, op: string, value: any): Predicate {
+        return (data: Props<any>): boolean => {
             if (typeof data[key] === "number") {
-                return eval(data[key]+ op + value);
+                return eval(data[key] + op + value);
             }
-            let leftSide = Types.isString(data[key]) ? "'" + data[key] + "'": data[key];
-            let rightSide = Types.isString(value) ? "'" + value + "'": value;
-            let result = eval(leftSide + op + rightSide );
-            return result;
+            const leftSide = Validations.isString(data[key]) ? "'" + data[key] + "'" : data[key];
+            const rightSide = Validations.isString(value) ? "'" + value + "'" : value;
+            return eval(leftSide + op + rightSide);
         };
     }
 
@@ -32,24 +36,24 @@ class Restrictions {
      * @return {Function}
      * @private
      */
-    private static __eq(key: string, value: any, caseSensitive: boolean): (data: any) => boolean {
-        return (data: any): boolean => {
+    private static equal(key: string, value: any, caseSensitive: boolean): Predicate {
+        return (data: Props<any>): boolean => {
             let propValue = data[key];
-            if (propValue && typeof propValue !== "string") {
+            if (propValue == null || value == null) {
+                return propValue === value;
+            }
+            if (typeof propValue !== "string") {
                 propValue = propValue.toString();
             }
-            if (value && typeof value !== "string") {
-                value = value.toString();
+            let equalValue: any = value;
+            if (typeof equalValue !== "string") {
+                equalValue = value.toString();
             }
             if (!caseSensitive) {
-                if(value) {
-                    value = value.toLocaleLowerCase();
-                }
-                if(propValue){
-                    propValue = propValue.toLocaleLowerCase();
-                }
+                equalValue = equalValue.toLocaleLowerCase();
+                propValue = propValue.toLocaleLowerCase();
             }
-            return propValue === value;
+            return propValue === equalValue;
         };
     }
 
@@ -60,8 +64,8 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @return {Function}
      */
-    public static eq(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return this.__eq(key, value, caseSensitive);
+    public static eq(key: string, value: any, caseSensitive?: boolean): Predicate {
+        return this.equal(key, value, caseSensitive);
     }
 
     /**
@@ -70,11 +74,11 @@ class Restrictions {
      * @param {any} value
      * @return {Function}
      */
-    public static lt(key: string, value: any): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static lt(key: string, value: any): (data: Props<any>) => boolean {
+        return (data: Props<any>): boolean => {
             return data[key] < value;
         };
-    };
+    }
 
     /**
      * @description checks given value of data by key less then or equals given value .
@@ -82,11 +86,11 @@ class Restrictions {
      * @param {any} value
      * @return {Function}
      */
-    public static lte(key: string, value: any): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static lte(key: string, value: any): Predicate {
+        return (data: Props<any>): boolean => {
             return data[key] <= value;
         };
-    };
+    }
 
     /**
      * @description checks given value of data by key greater then given value .
@@ -94,11 +98,11 @@ class Restrictions {
      * @param {any} value
      * @return {Function}
      */
-    public static gt(key: string, value: any): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static gt(key: string, value: any): Predicate {
+        return (data: Props<any>): boolean => {
             return data[key] > value;
         };
-    };
+    }
 
     /**
      * @description checks given value of data by key greater then or equals given value .
@@ -106,11 +110,11 @@ class Restrictions {
      * @param {any} value
      * @return {Function}
      */
-    public static gte(key: string, value: any): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static gte(key: string, value: any): Predicate {
+        return (data: Props<any>): boolean => {
             return data[key] >= value;
         };
-    };
+    }
 
     /**
      * @description checks given value of data by key between given startValue and given endValue.
@@ -119,14 +123,15 @@ class Restrictions {
      * @param {any} endValue
      * @return {Function}
      */
-    public static between(key: string, startValue: any, endValue: any): (data: any) => boolean{
-        if(startValue > endValue) {
-            let temp = startValue;
-            startValue = endValue;
-            endValue = temp;
+    public static between(key: string, startValue: any, endValue: any): Predicate {
+        let betweenStartValue = startValue;
+        let betweenEndValue = endValue;
+        if (betweenStartValue > betweenEndValue) {
+            const temp = betweenStartValue;
+            betweenStartValue = betweenEndValue;
+            betweenEndValue = temp;
         }
-        let funcArray = [this.gte(key, startValue), this.lte(key, endValue)];
-        return this.and.apply(this, funcArray);
+        return this.and.apply(this, [this.gte(key, betweenStartValue), this.lte(key, betweenEndValue)]);
     }
 
     /**
@@ -139,25 +144,30 @@ class Restrictions {
      * @param caseSensitive
      * @return {boolean}
      */
-    private static checkLike(data: any, key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive?: boolean ) {
+    private static checkLike(data: Props<any>, key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive?: boolean) {
         let propValue = data[key];
         if (propValue && typeof propValue !== "string") {
             propValue = propValue.toString();
         }
+        let likeValue = value;
         if (!caseSensitive) {
-            value = value.toLocaleLowerCase();
+            likeValue = likeValue.toLocaleLowerCase();
             propValue = propValue.toLocaleLowerCase();
         }
 
         if (fromLeft && fromRight) {
-            return propValue.indexOf(value) > -1;
-        } else if (fromLeft) {
-            return Strings.startsWith(propValue, value);
-        } else if (fromRight) {
-            return Strings.endsWith(propValue, value);
-        } else {
-            return this.__eq(key, value, caseSensitive)(data);
+            return propValue.indexOf(likeValue) > -1;
         }
+
+        if (fromLeft) {
+            return Strings.startsWith(propValue, likeValue);
+        }
+
+        if (fromRight) {
+            return Strings.endsWith(propValue, likeValue);
+        }
+
+        return this.equal(key, likeValue, caseSensitive)(data);
     }
 
     /**
@@ -168,14 +178,14 @@ class Restrictions {
      * @returns {Function}
      * @private
      */
-    public static __likeWithPercent(key: string, value: any, caseSensitive: boolean): (data: any) => boolean{
-        let fromLeft = Strings.endsWith(value, "%");
-        let fromRight = Strings.startsWith(value, "%");
-        let startIndex = fromRight ? 1 : 0;
-        let endIndex = fromLeft ? value.length - 1 : value.length;
-        value = value.substring(startIndex, endIndex);
-        return (data: any) => {
-            return Restrictions.checkLike(data, key, value, fromLeft, fromRight, caseSensitive);
+    public static likeWithPercent(key: string, value: any, caseSensitive: boolean): Predicate {
+        const fromLeft = Strings.endsWith(value, "%");
+        const fromRight = Strings.startsWith(value, "%");
+        const startIndex = fromRight ? 1 : 0;
+        const endIndex = fromLeft ? value.length - 1 : value.length;
+        const likeValue = value.substring(startIndex, endIndex);
+        return (data: Props<any>) => {
+            return Restrictions.checkLike(data, key, likeValue, fromLeft, fromRight, caseSensitive);
         };
     }
 
@@ -186,9 +196,9 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public static startsWith(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return (data: any) => {
-            return Restrictions.checkLike(data, key, value, true, false, caseSensitive)
+    public static startsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
+        return (data: Props<any>) => {
+            return Restrictions.checkLike(data, key, value, true, false, caseSensitive);
         };
     }
 
@@ -199,9 +209,9 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public static endsWith(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return (data: any) => {
-            return Restrictions.checkLike(data, key, value, false, true, caseSensitive)
+    public static endsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
+        return (data: Props<any>) => {
+            return Restrictions.checkLike(data, key, value, false, true, caseSensitive);
         };
     }
 
@@ -212,9 +222,9 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public static contains(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
+    public static contains(key: string, value: any, caseSensitive?: boolean): Predicate {
         return (data: any) => {
-            return Restrictions.checkLike(data, key, value, true, true, caseSensitive)
+            return Restrictions.checkLike(data, key, value, true, true, caseSensitive);
         };
     }
 
@@ -225,9 +235,9 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public static like(key: string, value: any, caseSensitive?: boolean): (data: any) => boolean {
-        return this.__likeWithPercent(key, value, caseSensitive);
-    };
+    public static like(key: string, value: any, caseSensitive?: boolean): Predicate {
+        return this.likeWithPercent(key, value, caseSensitive);
+    }
 
     /**
      *
@@ -243,9 +253,9 @@ class Restrictions {
      * @param {boolean} caseSensitive
      * @returns {Function}
      */
-    public static in(key: string, values: Array<any>, caseSensitive?: boolean) : (data: any) => boolean {
-        let restrictions = [];
-        for (let i = 0; i < values.length; i++) {
+    public static in(key: string, values: any[], caseSensitive?: boolean): Predicate {
+        const restrictions: Restrictions[] = [];
+        for (let i = 0; i < values.length; i = i + 1) {
             restrictions[restrictions.length] = this.eq(key, values[i], caseSensitive);
         }
         return this.or.apply(this, restrictions);
@@ -256,9 +266,9 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    public static isNull(key: string): (data: any) => boolean {
+    public static isNull(key: string): Predicate {
         return (data: any): boolean => {
-            let propValue = data[key];
+            const propValue = data[key];
             return (propValue === undefined || propValue === null);
         };
     }
@@ -268,7 +278,7 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    public static isNotNull(key: string): (data: any) => boolean {
+    public static isNotNull(key: string): Predicate {
         return (data: any): boolean => {
             return !(data[key] === undefined || data[key] === null);
         };
@@ -279,9 +289,9 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    public static isEmpty(key: string): (data: any) => boolean {
+    public static isEmpty(key: string): Predicate {
         return (data: any): boolean => {
-            let propValue = data[key];
+            const propValue = data[key];
             return (propValue === undefined || propValue === null) || propValue === "";
         };
     }
@@ -292,16 +302,17 @@ class Restrictions {
      * @param ignoreList
      * @return {(data:any)=>boolean}
      */
-    public static query(value: string, ignoreList?: string[]): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static query(value: string, ignoreList?: string[]): Predicate {
+        const ignores = ignoreList || [];
+        return (data: Props<any>): boolean => {
             let isSet = false;
             let result = false;
-            Objects.forEach(data, (item, key) => {
-                if(typeof item === "string") {
+            Objects.forEach(data, (item: any, key: string) => {
+                if (typeof item === "string" && ignores.indexOf(key) === -1) {
                     result = result || Restrictions.checkLike(data, key, value, true, true);
                     isSet = true;
                 }
-            }, ignoreList);
+            });
             return isSet ? result : true;
         };
     }
@@ -311,9 +322,9 @@ class Restrictions {
      * @param {string} key
      * @returns {Function}
      */
-    public static isNotEmpty(key: string): (data: any) => boolean {
-        return (data: any): boolean => {
-            let propValue = data[key];
+    public static isNotEmpty(key: string): (data: Props<any>) => boolean {
+        return (data: Props<any>): boolean => {
+            const propValue = data[key];
             return !((propValue === undefined || propValue === null) || propValue === "");
         };
     }
@@ -323,10 +334,10 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    public static or(...restrictions: ((data: any) => boolean)[]): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static or(...restrictions: ((data: Props<any>) => boolean)[]): (data: Props<any>) => boolean {
+        return (data: Props<any>): boolean => {
             let result = false;
-            for (let i = 0; i < restrictions.length; i++) {
+            for (let i = 0; i < restrictions.length; i = i + 1) {
                 result = result || restrictions[i](data);
             }
             return result;
@@ -338,10 +349,10 @@ class Restrictions {
      * @param { ...Function }restrictions
      * @returns {Function}
      */
-    public static and (...restrictions: ((data: any) => boolean)[]): (data: any) => boolean {
-        return (data: any): boolean => {
+    public static and(...restrictions: ((data: Props<any>) => boolean)[]): (data: Props<any>) => boolean {
+        return (data: Props<any>): boolean => {
             let result = true;
-            for (let i = 0; i < restrictions.length; i++) {
+            for (let i = 0; i < restrictions.length; i = i + 1) {
                 result = result && restrictions[i](data);
             }
             return result;
@@ -349,6 +360,4 @@ class Restrictions {
     }
 
 }
-
-export default Restrictions;
 

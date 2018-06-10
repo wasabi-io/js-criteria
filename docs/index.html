@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>JS-Criteria</title>
+	<title>js-criteria</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">JS-Criteria</a>
+					<a href="index.html" class="title">js-criteria</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> JS-Criteria</h1>
+			<h1> js-criteria</h1>
 		</div>
 	</div>
 </header>
@@ -64,116 +64,137 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="js-criteria">js-criteria</h1>
-				<h4 id="a-criteria-library-on-json-javascript-map-object-">A criteria library on json , javascript map object.</h4>
-				<p><a href="https://travis-ci.org/kbukum/js-criteria"><img src="https://travis-ci.org/kbukum/js-criteria.svg?branch=master" alt="Build Status"></a>
-				<a href="https://codecov.io/gh/kbukum/js-criteria"><img src="https://codecov.io/gh/kbukum/js-criteria/branch/master/graph/badge.svg" alt="codecov"></a></p>
-				<h5 id="docs">Docs</h5>
+				<h2 id="js-criteria">js-criteria</h2>
+				<p><a href="https://badge.fury.io/gh/wasabi-io%2Fjs-criteria.svg"><img src="https://badge.fury.io/gh/wasabi-io%2Fjs-criteria.svg" alt="npm package"></a>
+					<a href="https://travis-ci.org/wasabi-io/js-criteria"><img src="https://travis-ci.org/wasabi-io/js-criteria.svg?branch=master" alt="Build Status"></a>
+				<a href="https://codecov.io/gh/wasabi-io/js-criteria"><img src="https://codecov.io/gh/wasabi-io/js-criteria/branch/master/graph/badge.svg" alt="codecov"></a></p>
+				<h4 id="motivation">Motivation</h4>
+				<p>Aims to be a complete solution for query on json and javascript map objects.</p>
+				<h4 id="type-docs"><a href="https://wasabi-io.github.io/js-criteria">Type Docs</a></h4>
+				<h4 id="installation">Installation</h4>
+				<pre><code class="lang-bash">npm install --save js-criteria
+</code></pre>
+				<h4 id="usage">Usage</h4>
 				<ul>
-					<li><a href="https://kbukum.github.io/js-criteria">Docs</a> documentation.</li>
+					<li><a href="https://wasabi-io.github.io/js-criteria/modules/_api_criteria_.criteria.html">Criteria</a> :
+					Provides to create criteria on json.</li>
+					<li><a href="https://wasabi-io.github.io/js-criteria/modules/_api_criteriaresult_.criteriaresult.html">CriteriaResult</a> :
+					Holds criteria result.</li>
+					<li><a href="https://wasabi-io.github.io/js-criteria/modules/_api_order_.order.html">Order</a> :
+					Provides to ordering on <code>Criteria</code>.</li>
+					<li><a href="https://wasabi-io.github.io/js-criteria/modules/_api_property_.property.html">Property</a> :
+					Provides to select property on <code>Criteria</code>.</li>
+					<li><a href="https://wasabi-io.github.io/js-criteria/modules/_api_restrictions_.restrictions.html">Restrictions</a> :
+					Provides to filter on <code>Criteria</code>.</li>
 				</ul>
-				<h5 id="motivation">Motivation</h5>
-				<p>Aims to be a complete solution for query on json and javascript map objects. All coded with ES6 syntax.</p>
-				<h5 id="what-s-inside">What&#39;s inside</h5>
 				<ul>
-					<li><a href="https://www.typescriptlang.org/">Typescript</a> for all development.</li>
-					<li><a href="https://karma-runner.github.io/0.13/index.html">Karma</a> for running tests.</li>
-					<li><a href="https://www.npmjs.com/package/karma-typescript">Karma-Type-Script</a> for running tests and code coverage</li>
-					<li><a href="http://chaijs.com/">Chai</a> for asserting test errors.</li>
-				</ul>
-				<h4 id="library-types">Library Types</h4>
-				<ul>
-					<li><p>CommonJs - You can use this library with webpack it is default.</p>
-						<p><code>import Criteria from &quot;js-criteria/lib/api/Criteria&quot;;</code></p>
-					</li>
-					<li><p>AMD - if you want to import files as lazy then you can use ./amd</p>
-						<ul>
-							<li>more information about AMD : <a href="http://requirejs.org/docs/whyamd.html">http://requirejs.org/docs/whyamd.html</a></li>
-						</ul>
-					</li>
-					<li>UMD - if you want to import files as lazy then you can use ./umd<ul>
-							<li>more information about UMD : <a href="https://github.com/umdjs/umd">https://github.com/umdjs/umd</a></li>
-						</ul>
+					<li>import<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> {Criteria, Order, Restrictions} <span class="hljs-keyword">from</span> <span class="hljs-string">"js-criteria"</span>;
+</code></pre>
 					</li>
 				</ul>
-				<h3 id="quick-start">Quick Start</h3>
-				<h4 id="install-and-usage">Install and Usage</h4>
-				<p>Go to your project folder</p>
-				<pre><code class="lang-shell">npm install js-criteria --save
-</code></pre>
-				<p>You can import this project in 2 ways.</p>
-				<ol>
-					<li>Partial import. For ex. <code>import Criteria from &quot;js-criteria/lib/api/Criteria&quot;;</code></li>
-					<li><p>All-in-one, minified, optimized single js. For ex. <strong>TODO: example coming soon.</strong></p>
-					</li>
-					<li><p><a href="./manual/api.md">see api detail for usage</a></p>
-					</li>
-					<li>Example Data </li>
-				</ol>
-				<pre><code class="lang-javascript">    [
-        {
-            <span class="hljs-attr">id</span>: <span class="hljs-string">"1"</span>,
-            <span class="hljs-attr">name</span>: <span class="hljs-string">"Luffy"</span>,
-            <span class="hljs-attr">surname</span>: <span class="hljs-string">"Monkey D."</span>
-        },
-        {
-            <span class="hljs-attr">id</span>: <span class="hljs-string">"2"</span>,
-            <span class="hljs-attr">name</span>: <span class="hljs-string">"Zoro"</span>,
-            <span class="hljs-attr">surname</span>: <span class="hljs-string">"Roronoa"</span>
-        },
-        {
-            <span class="hljs-attr">id</span>: <span class="hljs-string">"3"</span>,
-            <span class="hljs-attr">name</span>: <span class="hljs-string">"Nami"</span>,
-            <span class="hljs-attr">surname</span>: <span class="hljs-string">""</span>
-        },
-    ];
+				<ul>
+					<li>add restriction</li>
+				</ul>
+				<pre><code class="lang-typescript">
+<span class="hljs-keyword">const</span> data = [
+    {
+        name: <span class="hljs-string">"Nami"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Monkey D. Luffy"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Gol D. Roger"</span>,
+        age: <span class="hljs-number">32</span>,
+    },
+    {
+        name: <span class="hljs-string">"Chopper"</span>,
+        age: <span class="hljs-number">16</span>,
+    }
+];
+
+<span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+criteria.add(Restrictions.eq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Gol D. Roger"</span>));
+<span class="hljs-built_in">console</span>.log(criteria.list().total);
+<span class="hljs-built_in">console</span>.log(criteria.list().data);
+
+criteria.add(Restrictions.eq(<span class="hljs-string">"age"</span>, <span class="hljs-number">16</span>));
+<span class="hljs-built_in">console</span>.log(criteria.list().total);
+<span class="hljs-built_in">console</span>.log(criteria.list().data);
+
+criteria.add(Restrictions.eq(<span class="hljs-string">"age"</span>, <span class="hljs-number">16</span>));
+<span class="hljs-built_in">console</span>.log(criteria.list().total);
+<span class="hljs-built_in">console</span>.log(criteria.list().data);
 </code></pre>
 				<ul>
-					<li>Create Criteria to query on list of data</li>
+					<li>add order</li>
 				</ul>
-				<pre><code class="lang-javascript">    <span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(dataList);
+				<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> data = [
+    {
+        name: <span class="hljs-string">"Nami"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Monkey D. Luffy"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Gol D. Roger"</span>,
+        age: <span class="hljs-number">32</span>,
+    },
+    {
+        name: <span class="hljs-string">"Chopper"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+];
+
+<span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
+<span class="hljs-built_in">console</span>.log(criteria.list().total);
+<span class="hljs-built_in">console</span>.log(criteria.list().data);
 </code></pre>
 				<ul>
-					<li>add Restrictions </li>
+					<li>add query</li>
 				</ul>
-				<pre><code class="lang-javascript">  criteria.add(Restrictions.like(<span class="hljs-string">"name"</span>, <span class="hljs-string">"%a%"</span>));
-  criteria.add(Restrictions.gt(<span class="hljs-string">"id"</span>, <span class="hljs-number">1</span>));
-</code></pre>
-				<ul>
-					<li>setFirstResult </li>
-				</ul>
-				<pre><code class="lang-javascript">    criteria.setMaxResults(<span class="hljs-number">3</span>);
-</code></pre>
-				<ul>
-					<li>setMaxResults</li>
-				</ul>
-				<pre><code class="lang-javascript">    criteria.setMaxResults(<span class="hljs-number">3</span>);
-</code></pre>
-				<ul>
-					<li><p>add Order (sorting)  </p>
-						<pre><code class="lang-javascript">  criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
-</code></pre>
-					</li>
-					<li><p>get result list</p>
-					</li>
-				</ul>
-				<pre><code class="lang-javascript">    <span class="hljs-keyword">const</span> list = criteria.list();
-</code></pre>
-				<h4 id="how-to-contribute">How to contribute</h4>
-				<p>Clone and run <code>npm install</code>. This will install both run-time project dependencies and developer tools listed
-				in <a href="./package.json">package.json</a> file.</p>
-				<h4 id="how-to-build-for-production">How to Build for Production</h4>
-				<p>If you need just to build the app (without running a dev server), simply run:</p>
-				<pre><code class="lang-shell">$ npm run build
-</code></pre>
-				<p>or</p>
-				<pre><code class="lang-shell">$ yarn build
-</code></pre>
-				<h4 id="how-to-run-unit-tests-">How to run Unit Tests.</h4>
-				<pre><code class="lang-shell">$ npm test
-</code></pre>
-				<p>or</p>
-				<pre><code class="lang-shell">$ yarn test
+				<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> data: <span class="hljs-built_in">any</span> = [
+    {
+        name: <span class="hljs-string">"Nami"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Monkey D. Luffy"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+    {
+        name: <span class="hljs-string">"Gol D. Roger"</span>,
+        age: <span class="hljs-number">32</span>,
+    },
+    {
+        name: <span class="hljs-string">"Chopper"</span>,
+        age: <span class="hljs-number">16</span>,
+    },
+];
+
+<span class="hljs-keyword">let</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+criteria.addQuery({
+    value: <span class="hljs-string">"o"</span>,
+});
+<span class="hljs-built_in">console</span>.log(criteria.list().total);
+<span class="hljs-built_in">console</span>.log(criteria.list().data);
+
+<span class="hljs-keyword">const</span> data2: <span class="hljs-built_in">any</span> = [
+    {id: <span class="hljs-number">1</span>, name: <span class="hljs-string">"John"</span>, surname: <span class="hljs-string">"Doe"</span>},
+    {name: <span class="hljs-string">"Jane"</span>, surname: <span class="hljs-string">"Roe"</span>, id: <span class="hljs-number">2</span>},
+];
+
+criteria2 = <span class="hljs-keyword">new</span> Criteria(data2);
+criteria2.addQuery({
+    value: <span class="hljs-string">"J"</span>,
+});
+<span class="hljs-built_in">console</span>.log(criteria2.list().total);
+<span class="hljs-built_in">console</span>.log(criteria2.list().data);
 </code></pre>
 			</div>
 		</div>
@@ -185,6 +206,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_api_criteria_.html">"api/<wbr>Criteria"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_api_criteriaresult_.html">"api/<wbr>Criteria<wbr>Result"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_api_order_.html">"api/<wbr>Order"</a>
@@ -202,13 +226,7 @@
 						<a href="modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_strings_.html">"util/<wbr>Strings"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_types_.html">"util/<wbr>Types"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_util_index_.html">"util/index"</a>
+						<a href="modules/_lang_type_.html">"lang/<wbr>Type"</a>
 					</li>
 				</ul>
 			</nav>

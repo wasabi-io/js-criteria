@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-beta
+   * changed configuration structure and build mechanism.
+   * checked all classes and fixed somethings about typesript and tslint rules.
+   * changed documentation.
+
+
 ## 1.0.6
    * fixed npm build problem. recreate .npmignore file.
    

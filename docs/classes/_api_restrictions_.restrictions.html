@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Restrictions | JS-Criteria</title>
+	<title>Restrictions | js-criteria</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">JS-Criteria</a>
+					<a href="../index.html" class="title">js-criteria</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -91,14 +91,13 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#___eq" class="tsd-kind-icon">___eq</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#___like" class="tsd-kind-icon">___like</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#___likewithpercent" class="tsd-kind-icon">___like<wbr>With<wbr>Percent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#and" class="tsd-kind-icon">and</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#between" class="tsd-kind-icon">between</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#checklike" class="tsd-kind-icon">check<wbr>Like</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#contains" class="tsd-kind-icon">contains</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#endswith" class="tsd-kind-icon">ends<wbr>With</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#eq" class="tsd-kind-icon">eq</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#equal" class="tsd-kind-icon">equal</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#gt" class="tsd-kind-icon">gt</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#gte" class="tsd-kind-icon">gte</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#in" class="tsd-kind-icon">in</a></li>
@@ -107,10 +106,12 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#isnotnull" class="tsd-kind-icon">is<wbr>Not<wbr>Null</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#isnull" class="tsd-kind-icon">is<wbr>Null</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#like" class="tsd-kind-icon">like</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_api_restrictions_.restrictions.html#likewithpercent" class="tsd-kind-icon">like<wbr>With<wbr>Percent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#lt" class="tsd-kind-icon">lt</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#lte" class="tsd-kind-icon">lte</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#op" class="tsd-kind-icon">op</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#or" class="tsd-kind-icon">or</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#query" class="tsd-kind-icon">query</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_restrictions_.restrictions.html#startswith" class="tsd-kind-icon">starts<wbr>With</a></li>
 							</ul>
 						</section>
@@ -119,174 +120,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<a name="___eq" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> ___eq</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">___eq<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L34">api/Restrictions.ts:34</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><p>checks equality given value and given value of data by key.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<a name="___like" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> ___like</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">___like<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, fromLeft<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, fromRight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, caseSensitive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L141">api/Restrictions.ts:141</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><p>checks given value of data by key like given value by  fromLeft and fromRight parameters.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>fromLeft: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-								<li>
-									<h5>fromRight: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-								<li>
-									<h5>caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<a name="___likewithpercent" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> ___like<wbr>With<wbr>Percent</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">___like<wbr>With<wbr>Percent<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L174">api/Restrictions.ts:174</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><p>checks given value of data by key like given value by percent (%) charachter like sql <code>like</code>.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="and" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> and</h3>
@@ -297,7 +130,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L316">api/Restrictions.ts:316</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L352">api/Restrictions.ts:352</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,38 +144,20 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>restrictions: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">[]</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>data: <span class="tsd-signature-type">any</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
+													<h5>data: <span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -357,13 +172,13 @@
 					<a name="between" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> between</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">between<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, startValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, endValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">between<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, startValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, endValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L121">api/Restrictions.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L126">api/Restrictions.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,25 +200,47 @@
 									<h5>endValue: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="checklike" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> check<wbr>Like</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Like<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, fromLeft<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, fromRight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L147">api/Restrictions.ts:147</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
+								<li>
+									<h5>data: <span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>fromLeft: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>fromRight: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -411,13 +248,13 @@
 					<a name="contains" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> contains</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">contains<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">contains<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L212">api/Restrictions.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L225">api/Restrictions.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -439,25 +276,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -465,13 +284,13 @@
 					<a name="endswith" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> ends<wbr>With</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">ends<wbr>With<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">ends<wbr>With<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L201">api/Restrictions.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L212">api/Restrictions.ts:212</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -493,25 +312,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -519,13 +320,13 @@
 					<a name="eq" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> eq</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">eq<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">eq<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L62">api/Restrictions.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L67">api/Restrictions.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -547,25 +348,43 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="equal" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> equal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">equal<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L39">api/Restrictions.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>checks equality given value and given value of data by key.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -573,13 +392,13 @@
 					<a name="gt" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> gt</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">gt<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">gt<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L96">api/Restrictions.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L101">api/Restrictions.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -598,25 +417,7 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -624,13 +425,13 @@
 					<a name="gte" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> gte</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">gte<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">gte<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L108">api/Restrictions.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L113">api/Restrictions.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -649,25 +450,7 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -675,13 +458,13 @@
 					<a name="in" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> in</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">in<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">in<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L241">api/Restrictions.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L256">api/Restrictions.ts:256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -697,31 +480,13 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>values: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>values: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -729,13 +494,13 @@
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Empty</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L277">api/Restrictions.ts:277</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L292">api/Restrictions.ts:292</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -751,25 +516,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -783,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L289">api/Restrictions.ts:289</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L325">api/Restrictions.ts:325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -802,15 +549,15 @@
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
+													<h5>data: <span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -825,13 +572,13 @@
 					<a name="isnotnull" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Not<wbr>Null</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Not<wbr>Null<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Not<wbr>Null<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L266">api/Restrictions.ts:266</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L281">api/Restrictions.ts:281</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -847,25 +594,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -873,13 +602,13 @@
 					<a name="isnull" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Null</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Null<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Null<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L254">api/Restrictions.ts:254</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L269">api/Restrictions.ts:269</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -895,25 +624,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -921,13 +632,13 @@
 					<a name="like" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> like</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">like<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">like<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L223">api/Restrictions.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L238">api/Restrictions.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -949,25 +660,43 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="likewithpercent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> like<wbr>With<wbr>Percent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">like<wbr>With<wbr>Percent<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L181">api/Restrictions.ts:181</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>checks given value of data by key like given value by percent (%) charachter like sql <code>like</code>.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -981,7 +710,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L72">api/Restrictions.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L77">api/Restrictions.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1003,15 +732,15 @@
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
+													<h5>data: <span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1026,13 +755,13 @@
 					<a name="lte" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> lte</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">lte<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">lte<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L84">api/Restrictions.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L89">api/Restrictions.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1051,25 +780,7 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1077,13 +788,13 @@
 					<a name="op" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> op</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">op<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, op<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">op<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, op<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L14">api/Restrictions.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L20">api/Restrictions.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1105,25 +816,7 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1137,7 +830,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L301">api/Restrictions.ts:301</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L337">api/Restrictions.ts:337</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1151,38 +844,20 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>restrictions: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">[]</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>data: <span class="tsd-signature-type">any</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
+													<h5>data: <span class="tsd-signature-type">Props</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1194,16 +869,44 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="startswith" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> starts<wbr>With</h3>
+					<a name="query" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> query</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">starts<wbr>With<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, ignoreList<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/e96fb8c/src/api/Restrictions.ts#L190">api/Restrictions.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L305">api/Restrictions.ts:305</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ignoreList: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="startswith" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> starts<wbr>With</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">starts<wbr>With<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/kbukum/js-criteria/blob/f85659b/src/api/Restrictions.ts#L199">api/Restrictions.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1225,25 +928,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> caseSensitive: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>data: <span class="tsd-signature-type">any</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-signature-type">Predicate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1257,6 +942,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_api_criteria_.html">"api/<wbr>Criteria"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_api_criteriaresult_.html">"api/<wbr>Criteria<wbr>Result"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_api_order_.html">"api/<wbr>Order"</a>
@@ -1274,13 +962,7 @@
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_strings_.html">"util/<wbr>Strings"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_types_.html">"util/<wbr>Types"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_index_.html">"util/index"</a>
+						<a href="../modules/_lang_type_.html">"lang/<wbr>Type"</a>
 					</li>
 				</ul>
 			</nav>
@@ -1291,20 +973,14 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_api_restrictions_.restrictions.html" class="tsd-kind-icon">Restrictions</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-								<a href="_api_restrictions_.restrictions.html#___eq" class="tsd-kind-icon">___eq</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-								<a href="_api_restrictions_.restrictions.html#___like" class="tsd-kind-icon">___like</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-								<a href="_api_restrictions_.restrictions.html#___likewithpercent" class="tsd-kind-icon">___like<wbr>With<wbr>Percent</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#and" class="tsd-kind-icon">and</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#between" class="tsd-kind-icon">between</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="_api_restrictions_.restrictions.html#checklike" class="tsd-kind-icon">check<wbr>Like</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#contains" class="tsd-kind-icon">contains</a>
@@ -1314,6 +990,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#eq" class="tsd-kind-icon">eq</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="_api_restrictions_.restrictions.html#equal" class="tsd-kind-icon">equal</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#gt" class="tsd-kind-icon">gt</a>
@@ -1339,6 +1018,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#like" class="tsd-kind-icon">like</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="_api_restrictions_.restrictions.html#likewithpercent" class="tsd-kind-icon">like<wbr>With<wbr>Percent</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#lt" class="tsd-kind-icon">lt</a>
 							</li>
@@ -1352,12 +1034,18 @@
 								<a href="_api_restrictions_.restrictions.html#or" class="tsd-kind-icon">or</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_api_restrictions_.restrictions.html#query" class="tsd-kind-icon">query</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_api_restrictions_.restrictions.html#startswith" class="tsd-kind-icon">starts<wbr>With</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_api_restrictions_.predicate.html" class="tsd-kind-icon">Predicate</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -1,4 +1,5 @@
-import Functions from "../util/Functions";
+import {Props} from "wasabi-common";
+import Functions from "wasabi-common/lib/types/Functions";
 
 const RESTRICTED_CONSTRUCTORS = [
     "Object",
@@ -48,7 +49,7 @@ export default class Type {
      * @param instance
      * @return {undefined}
      */
-    bindAll(instance: Object){
+    bindAll(instance: Object) {
         return Type.bindAll(instance);
     }
 
@@ -56,13 +57,13 @@ export default class Type {
      * Binds all methods to the instance.
      * @param {Object} instance to bind
      */
-    public static bindAll(instance: Object) {
+    public static bindAll(instance: Props<any>) {
         let parent = Object.getPrototypeOf(instance);
-        let bindedNames = [];
+        const bindedNames: Props<any> = {};
         while (RESTRICTED_CONSTRUCTORS.indexOf(Functions.getName(parent.constructor)) === -1) {
-            let names = Object.getOwnPropertyNames(parent);
-            for (let i = 0; i < names.length; i++) {
-                let name = names[i];
+            const names: string[] = Object.getOwnPropertyNames(parent);
+            for (let i = 0; i < names.length; i = i + 1) {
+                const name = names[i];
                 if (!bindedNames[name] && typeof parent[name] === "function" && RESTRICTED_BIND_TYPES.indexOf(name) === -1) {
                     instance[name] = parent[name].bind(instance);
                     bindedNames[name] = true;
@@ -73,4 +74,3 @@ export default class Type {
         }
     }
 }
-
