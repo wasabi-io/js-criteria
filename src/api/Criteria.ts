@@ -20,28 +20,28 @@ export default class Criteria<E> extends Type {
      * Holds added restrictions to constrain the results to be retrieved.
      * @type {Array}
      */
-    private restrictions: ((e: E) => boolean)[] = [];
+    private restrictions: ((e: E) => boolean)[];
     /**
      *  Holds given orders to ordering the result set.
      * @type {Array}
      */
-    private sorts: ((list: E[]) => E[])[] = [];
+    private sorts: ((list: E[]) => E[])[];
     /**
      *
      * @type {Array}
      */
-    private queries: Query[] = [];
+    private queries: Query[];
 
     /**
      * Holds  an integer that represents the first row in your result set, starting with row 0.
      * @type {number}
      */
-    private firstResult: number = 0;
+    private firstResult: number;
     /**
      * Holds to retrieve a fixed number maxResults of objects from the given data.
      * @type {number}
      */
-    private maxResults: number = 0;
+    private maxResults: number;
 
     /**
      *  Create a new Criteria, by given data.
@@ -50,8 +50,16 @@ export default class Criteria<E> extends Type {
     public constructor(dataList: E[]) {
         super();
         this.dataList = dataList;
+        this.init();
     }
 
+    private init() {
+        this.restrictions = [];
+        this.sorts = [];
+        this.queries = [];
+        this.firstResult = 0;
+        this.maxResults = this.dataList.length;
+    }
     /**
      * set global query
      * @param query
@@ -111,6 +119,11 @@ export default class Criteria<E> extends Type {
      */
     public list(): CriteriaResult<E> {
         return Criteria.list(this);
+    }
+
+    public clear(): Criteria<E> {
+        this.init();
+        return this;
     }
 
     private static getQueryRestriction<E>(instance: Criteria<E>): (data: E) => boolean {

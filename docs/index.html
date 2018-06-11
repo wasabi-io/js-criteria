@@ -196,6 +196,35 @@ criteria2.addQuery({
 <span class="hljs-built_in">console</span>.log(criteria2.list().total);
 <span class="hljs-built_in">console</span>.log(criteria2.list().data);
 </code></pre>
+				<ul>
+					<li>reset criteria as initial state.</li>
+				</ul>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+criteria.add(Restrictions.eq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Gol D. Roger"</span>));
+criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
+criteria.addQuery({
+    value: <span class="hljs-string">"o"</span>,
+});
+criteria.clear();
+<span class="hljs-built_in">console</span>.log(criteria.list().data); <span class="hljs-comment">// show all data.</span>
+</code></pre>
+				<p>The MIT License (MIT)</p>
+				<p>Copyright (c) 2016 Robe</p>
+				<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+					of this software and associated documentation files (the &quot;Software&quot;), to deal
+					in the Software without restriction, including without limitation the rights
+					to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+					copies of the Software, and to permit persons to whom the Software is
+				furnished to do so, subject to the following conditions:</p>
+				<p>The above copyright notice and this permission notice shall be included in all
+				copies or substantial portions of the Software.</p>
+				<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+					IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+					FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+					AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+					LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+					OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+				SOFTWARE.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

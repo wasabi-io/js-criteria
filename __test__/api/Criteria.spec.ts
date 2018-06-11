@@ -144,4 +144,33 @@ describe("api/Criteria", () => {
         assert.deepEqual(expectedData2, criteria.list().data);
     });
 
+    it("clear", () => {
+        const data = [
+            {
+                name: "Nami",
+                age: 16,
+            },
+            {
+                name: "Monkey D. Luffy",
+                age: 16,
+            },
+            {
+                name: "Gol D. Roger",
+                age: 32,
+            },
+            {
+                name: "Chopper",
+                age: 16,
+            },
+        ];
+
+        const criteria = new Criteria(data);
+        criteria.add(Restrictions.eq("name", "Gol D. Roger"));
+        criteria.addOrder(Order.asc("name"));
+        criteria.addQuery({
+            value: "o",
+        });
+        criteria.clear();
+        assert.deepEqual(data, criteria.list().data);
+    });
 });

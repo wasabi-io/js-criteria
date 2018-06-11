@@ -1,4 +1,6 @@
 # Change Log
+## 2.0.0
+ * added Criteria.clear method.
 
 ## 2.0.0-beta
    * changed configuration structure and build mechanism.
