@@ -60,6 +60,7 @@ export default class Criteria<E> extends Type {
         this.firstResult = 0;
         this.maxResults = this.dataList.length;
     }
+
     /**
      * set global query
      * @param query
@@ -111,6 +112,14 @@ export default class Criteria<E> extends Type {
     public setMaxResults(maxResults: number): Criteria<E> {
         this.maxResults = maxResults;
         return this;
+    }
+
+    /**
+     * Get the results.
+     * @return {number}
+     */
+    public get total(): number {
+        return this.dataList ? this.dataList.length : 0;
     }
 
     /**
@@ -187,11 +196,10 @@ export default class Criteria<E> extends Type {
             last = dataArray.length;
         }
 
-        const totalCount = dataArray.length;
-
+        const total = instance.total;
         if (first !== 0 || last !== dataArray.length) {
-            return new CriteriaResult<E>(totalCount, data.splice(first, last));
+            return new CriteriaResult<E>(total, data.splice(first, last));
         }
-        return new CriteriaResult<E>(totalCount, data);
+        return new CriteriaResult<E>(total, data);
     }
 }

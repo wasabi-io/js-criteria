@@ -1,4 +1,8 @@
 # Change Log
+
+## 2.0.1
+ * fixed total problem.
+
 ## 2.0.0
  * added Criteria.clear method.
 
