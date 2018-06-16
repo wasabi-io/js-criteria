@@ -1,5 +1,6 @@
 import Property from "js-criteria/lib/api/Property";
 import {assert} from "chai";
+import Predicates from "js-criteria/lib/api/Predicates";
 
 describe("api/Property", () => {
     it("forName.op", () => {
@@ -154,57 +155,21 @@ describe("api/Property", () => {
         assert.isNotOk(restriction.predicate(data));
     });
 
-    it("forName.contains", () => {
-        const data = {
-            name: "kamil"
-        };
-
-        let restriction = Property.forName("name").contains("il");
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("IL");
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("mi");
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("il", true);
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("IL", true);
-        assert.isNotOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("MI", true);
-        assert.isNotOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").contains("plapla");
-        assert.isNotOk(restriction.predicate(data));
-    });
-
     it("forName.like", () => {
         const data = {
             name: "kamil"
         };
 
-        let restriction = Property.forName("name").like("%il");
+        let restriction = Property.forName("name").like( "mi");
         assert.isOk(restriction.predicate(data));
 
-        restriction = Property.forName("name").like("%IL");
+        restriction = Property.forName("name").like("MI");
         assert.isOk(restriction.predicate(data));
 
-        restriction = Property.forName("name").like("%mi%");
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").like("%il", true);
-        assert.isOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").like("%IL", true);
+        restriction = Property.forName("name").like("MI", true);
         assert.isNotOk(restriction.predicate(data));
 
-        restriction = Property.forName("name").like("%MI%", true);
-        assert.isNotOk(restriction.predicate(data));
-
-        restriction = Property.forName("name").like("%plapla%");
+        restriction = Property.forName("name").like("plapla");
         assert.isNotOk(restriction.predicate(data));
     });
 

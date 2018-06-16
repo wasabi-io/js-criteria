@@ -327,86 +327,22 @@ describe("api/Restriction", () => {
         assert.equal("endsWith", restriction.op);
     });
 
-    it("contains", () => {
-        const data = {
-            name: "kamil"
-        };
-
-        let restriction = Restrictions.contains("name", "il");
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "IL");
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "mi");
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "il", true);
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "IL", true);
-        assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "MI", true);
-        assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-
-        restriction = Restrictions.contains("name", "plapla");
-        assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("contains", restriction.op);
-    });
-
     it("like", () => {
         const data = {
             name: "kamil"
         };
 
-        let restriction = Restrictions.like("name", "%il");
+        let restriction = Restrictions.like("name", "mi");
         assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
 
-        restriction = Restrictions.like("name", "%IL");
+        restriction = Restrictions.like("name", "MI");
         assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
 
-        restriction = Restrictions.like("name", "%mi%");
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
-
-        restriction = Restrictions.like("name", "%il", true);
-        assert.isOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
-
-        restriction = Restrictions.like("name", "%IL", true);
+        restriction = Restrictions.like("name", "MI", true);
         assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
 
-        restriction = Restrictions.like("name", "%MI%", true);
+        restriction = Restrictions.like("name", "plapla");
         assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
-
-        restriction = Restrictions.like("name", "%plapla%");
-        assert.isNotOk(restriction.predicate(data));
-        assert.equal("name", restriction.key);
-        assert.equal("like", restriction.op);
     });
 
     it("in", () => {

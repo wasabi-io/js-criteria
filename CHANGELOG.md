@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.1.1
+
+* removed `contains` methods
+* changed `like` method to search value without percent.
+
 ## 2.1.0
 * changed Predicates
 * added `isTrue`, `isFalse`, `neq` functions to `Restrictions`

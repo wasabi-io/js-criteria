@@ -14,7 +14,7 @@ export class PropertyRestrictions {
      * @description evulates op and execute it.
      * @param {string} op
      * @param {any} value
-     * @return {(data: any) => boolean}
+     * @return {RestrictionItem}
      */
     public op(op: string, value: any): RestrictionItem {
         return Restrictions.op(this.name, op, value);
@@ -24,7 +24,7 @@ export class PropertyRestrictions {
      * @description checks equality given value and given value of data by key.
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public eq(value: any, caseSensitive?: boolean): RestrictionItem {
         return Restrictions.eq(this.name, value, caseSensitive);
@@ -33,7 +33,7 @@ export class PropertyRestrictions {
     /**
      * @description checks given value of data by key less then given value .
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public lt(value: any): RestrictionItem {
         return Restrictions.lt(this.name, value);
@@ -42,7 +42,7 @@ export class PropertyRestrictions {
     /**
      * @description checks given value of data by key less then or equals given value .
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public lte(value: any): RestrictionItem {
         return Restrictions.lte(this.name, value);
@@ -51,7 +51,7 @@ export class PropertyRestrictions {
     /**
      * @description checks given value of data by key greater then given value .
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public gt(value: any): RestrictionItem {
         return Restrictions.gt(this.name, value);
@@ -60,7 +60,7 @@ export class PropertyRestrictions {
     /**
      * @description checks given value of data by key greater then or equals given value .
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public gte(value: any): RestrictionItem {
         return Restrictions.gte(this.name, value);
@@ -68,10 +68,9 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key between given startValue and given endValue.
-     * @param {string} key
      * @param {any} startValue
      * @param {any} endValue
-     * @return {Function}
+     * @return {RestrictionItem}
      */
     public between(startValue: any, endValue: any): RestrictionItem {
         return Restrictions.between(this.name, startValue, endValue);
@@ -81,7 +80,7 @@ export class PropertyRestrictions {
      * @description checks given value of data by key startsWith given value by caseSensitive parameter.
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public startsWith(value: any, caseSensitive?: boolean): RestrictionItem {
         return Restrictions.startsWith(this.name, value, caseSensitive);
@@ -91,27 +90,17 @@ export class PropertyRestrictions {
      * @description checks given value of data by key endsWith given value by caseSensitive parameter.
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public endsWith(value: any, caseSensitive?: boolean): RestrictionItem {
         return Restrictions.endsWith(this.name, value, caseSensitive);
     }
 
     /**
-     * @description checks given value of data by key contains given value by caseSensitive parameter.
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @returns {Function}
-     */
-    public contains(value: any, caseSensitive?: boolean): RestrictionItem {
-        return Restrictions.contains(this.name, value, caseSensitive);
-    }
-
-    /**
      * @description checks given value of data by key like given value by caseSensitive parameter.
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public like(value: any, caseSensitive?: boolean): RestrictionItem {
         return Restrictions.like(this.name, value, caseSensitive);
@@ -119,10 +108,9 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
-     * @param {string} key
-     * @param {Array<any>} values
+     * @param {any[]} values
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public in(values: any[], caseSensitive?: boolean): RestrictionItem {
         return Restrictions.in(this.name, values, caseSensitive);
@@ -130,7 +118,7 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key is null.
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public isNull(): RestrictionItem {
         return Restrictions.isNull(this.name);
@@ -138,7 +126,7 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key is not null.
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public isNotNull(): RestrictionItem {
         return Restrictions.isNotNull(this.name);
@@ -146,7 +134,7 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key is empty.
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public isEmpty(): RestrictionItem {
         return Restrictions.isEmpty(this.name);
@@ -154,7 +142,7 @@ export class PropertyRestrictions {
 
     /**
      * @description checks given value of data by key is not empty.
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
     public isNotEmpty(): RestrictionItem {
         return Restrictions.isNotEmpty(this.name);

@@ -131,18 +131,6 @@ export default class Restrictions {
     }
 
     /**
-     * @description checks given value of data by key like given value by percent (%) charachter like sql `like`.
-     * @param {string} key
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @returns {RestrictionItem}
-     * @private
-     */
-    public static likeWithPercent(key: string, value: any, caseSensitive: boolean): RestrictionItem {
-        return Restrictions.wrap(key, "like", Predicates.likeWithPercent(key, value, caseSensitive));
-    }
-
-    /**
      * @description checks given value of data by key startsWith given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
@@ -150,9 +138,7 @@ export default class Restrictions {
      * @returns {RestrictionItem}
      */
     public static startsWith(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
-        return Restrictions.wrap(key, "startsWith", (data: Props<any>) => {
-            return Predicates.checkLike(data, key, value, true, false, caseSensitive);
-        });
+        return Restrictions.wrap(key, "startsWith", Predicates.startsWith(key, value, caseSensitive));
     }
 
     /**
@@ -169,19 +155,6 @@ export default class Restrictions {
     }
 
     /**
-     * @description checks given value of data by key contains given value by caseSensitive parameter.
-     * @param {string} key
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @returns {RestrictionItem}
-     */
-    public static contains(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
-        return Restrictions.wrap(key, "contains", (data: any) => {
-            return Predicates.checkLike(data, key, value, true, true, caseSensitive);
-        });
-    }
-
-    /**
      * @description checks given value of data by key like given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
@@ -189,13 +162,13 @@ export default class Restrictions {
      * @returns {RestrictionItem}
      */
     public static like(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
-        return Restrictions.wrap(key, "like", Predicates.likeWithPercent(key, value, caseSensitive));
+        return Restrictions.wrap(key, "like", Predicates.like(key, value, caseSensitive));
     }
 
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
-     * @param {Array<any>} values
+     * @param {any[]} values
      * @param {boolean} caseSensitive
      * @returns {RestrictionItem}
      */
@@ -206,7 +179,7 @@ export default class Restrictions {
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
-     * @param {Array<any>} values
+     * @param {any[]} values
      * @param {boolean} caseSensitive
      * @returns {RestrictionItem}
      */
@@ -280,8 +253,8 @@ export default class Restrictions {
 
     /**
      * @description joins Restrictions functions with and validation.
-     * @param op {string}
-     * @param { ...RestrictionItem }restrictions
+     * @param  {string} op
+     * @param { RestrictionItem[] } restrictions
      * @param {PredicateMultiple} predicateMultiple
      * @returns {Function}
      */

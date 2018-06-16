@@ -232,57 +232,21 @@ describe("api/Predicate", () => {
         assert.isNotOk(restriction(data));
     });
 
-    it("contains", () => {
-        const data = {
-            name: "kamil"
-        };
-
-        let restriction = Predicates.contains("name", "il");
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.contains("name", "IL");
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.contains("name", "mi");
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.contains("name", "il", true);
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.contains("name", "IL", true);
-        assert.isNotOk(restriction(data));
-
-        restriction = Predicates.contains("name", "MI", true);
-        assert.isNotOk(restriction(data));
-
-        restriction = Predicates.contains("name", "plapla");
-        assert.isNotOk(restriction(data));
-    });
-
     it("like", () => {
         const data = {
             name: "kamil"
         };
 
-        let restriction = Predicates.like("name", "%il");
+        let restriction = Predicates.like("name", "mi");
         assert.isOk(restriction(data));
 
-        restriction = Predicates.like("name", "%IL");
+        restriction = Predicates.like("name", "MI");
         assert.isOk(restriction(data));
 
-        restriction = Predicates.like("name", "%mi%");
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.like("name", "%il", true);
-        assert.isOk(restriction(data));
-
-        restriction = Predicates.like("name", "%IL", true);
+        restriction = Predicates.like("name", "MI", true);
         assert.isNotOk(restriction(data));
 
-        restriction = Predicates.like("name", "%MI%", true);
-        assert.isNotOk(restriction(data));
-
-        restriction = Predicates.like("name", "%plapla%");
+        restriction = Predicates.like("name", "plapla");
         assert.isNotOk(restriction(data));
     });
 

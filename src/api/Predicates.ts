@@ -15,7 +15,7 @@ export interface CheckEquality {
 }
 
 /**
- * Resrictions to constrain the results to be retrieved.
+ * Predicates to constrain the results to be retrieved.
  */
 export default class Predicates {
     /**
@@ -201,28 +201,11 @@ export default class Predicates {
     }
 
     /**
-     * @description checks given value of data by key like given value by percent (%) charachter like sql `like`.
-     * @param {string} key
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @returns {Function}
-     * @private
-     */
-    public static likeWithPercent(key: string, value: any, caseSensitive: boolean): Predicate {
-        const fromLeft = Strings.endsWith(value, "%");
-        const fromRight = Strings.startsWith(value, "%");
-        const startIndex = fromRight ? 1 : 0;
-        const endIndex = fromLeft ? value.length - 1 : value.length;
-        const likeValue = value.substring(startIndex, endIndex);
-        return (data: Props<any>) => Predicates.checkLike(data, key, likeValue, fromLeft, fromRight, caseSensitive);
-    }
-
-    /**
      * @description checks given value of data by key startsWith given value by caseSensitive parameter.
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static startsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
         return (data: Props<any>) => Predicates.checkLike(data, key, value, true, false, caseSensitive);
@@ -233,21 +216,10 @@ export default class Predicates {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static endsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
         return (data: Props<any>) => Predicates.checkLike(data, key, value, false, true, caseSensitive);
-    }
-
-    /**
-     * @description checks given value of data by key contains given value by caseSensitive parameter.
-     * @param {string} key
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @returns {Function}
-     */
-    public static contains(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return (data: any) => Predicates.checkLike(data, key, value, true, true, caseSensitive);
     }
 
     /**
@@ -255,18 +227,18 @@ export default class Predicates {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static like(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return this.likeWithPercent(key, value, caseSensitive);
+        return (data: any) => Predicates.checkLike(data, key, value, true, true, caseSensitive);
     }
 
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
-     * @param {Array<any>} values
+     * @param { any[] } values
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static in(key: string, values: any[], caseSensitive?: boolean): Predicate {
         const predicates: Predicate[] = [];
@@ -279,9 +251,9 @@ export default class Predicates {
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
-     * @param {Array<any>} values
+     * @param { any[] } values
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static likeIn(key: string, values: any[], caseSensitive?: boolean): Predicate {
         const predicates: Predicates[] = [];
@@ -294,7 +266,7 @@ export default class Predicates {
     /**
      * @description checks given value of data by key is null.
      * @param {string} key
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static isNull(key: string): Predicate {
         return (data: any): boolean => {
@@ -306,7 +278,7 @@ export default class Predicates {
     /**
      * @description checks given value of data by key is not null.
      * @param {string} key
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static isNotNull(key: string): Predicate {
         return (data: any): boolean => {
@@ -317,7 +289,7 @@ export default class Predicates {
     /**
      * @description checks given value of data by key is empty.
      * @param {string} key
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static isEmpty(key: string): Predicate {
         return (data: any): boolean => {
@@ -350,7 +322,7 @@ export default class Predicates {
     /**
      * @description checks given value of data by key is not empty.
      * @param {string} key
-     * @returns {Function}
+     * @returns {Predicate}
      */
     public static isNotEmpty(key: string): Predicate {
         return (data: Props<any>): boolean => {
@@ -361,8 +333,8 @@ export default class Predicates {
 
     /**
      * @description joins Predicates functions with or validation.
-     * @param { ...Function }predicates
-     * @returns {Function}
+     * @param { Predicate[] }predicates
+     * @returns {Predicate}
      */
     public static or(...predicates: Predicate[]): Predicate {
         return Predicates.orOperation(predicates);
@@ -370,8 +342,8 @@ export default class Predicates {
 
     /**
      * @description joins Predicates functions with and validation.
-     * @param { ...Function }predicates
-     * @returns {Function}
+     * @param { Predicate[] }predicates
+     * @returns {Predicate}
      */
     public static and(...predicates: Predicate[]): Predicate {
         return Predicates.andOperation(predicates);
@@ -379,8 +351,8 @@ export default class Predicates {
 
     /**
      * @description joins Predicates functions with or validation.
-     * @param { ...Function }predicates
-     * @returns {Function}
+     * @param { Predicate[] }predicates
+     * @returns {Predicate}
      */
     public static orOperation(predicates: Predicate[]): Predicate {
         return (data: Props<any>): boolean => {
@@ -394,8 +366,8 @@ export default class Predicates {
 
     /**
      * @description joins Predicates functions with and validation.
-     * @param { ...Function }predicates
-     * @returns {Function}
+     * @param { Predicate[] }predicates
+     * @returns {Predicate}
      */
     public static andOperation(predicates: Predicate[]): Predicate {
         return (data: Props<any>): boolean => {

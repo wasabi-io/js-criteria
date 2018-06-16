@@ -3,6 +3,7 @@ import Type from "../lang/Type";
 import {default as Restrictions, RestrictionItem} from "./Restrictions";
 import CriteriaResult from "./CriteriaResult";
 import {default as Order, OrderCallback, OrderItem} from "./Order";
+import Strings from "wasabi-common/lib/types/Strings";
 
 export enum OrderType {
     asc = "asc",
@@ -22,7 +23,8 @@ export default class Criteria<E> extends Type {
      * Holds added restrictions to constrain the results to be retrieved.
      * @type {Array}
      */
-    private restrictions: RestrictionItem[];
+    private restrictionMap: Props<RestrictionItem>;
+
     /**
      *  Holds given orders to ordering the result set.
      * @type {Array}
@@ -51,7 +53,7 @@ export default class Criteria<E> extends Type {
     }
 
     private init() {
-        this.restrictions = [];
+        this.restrictionMap = {};
         this.sortMap = {};
         this._offset = 0;
         this._limit = this.dataList.length;
@@ -187,8 +189,7 @@ export default class Criteria<E> extends Type {
     }
 
     /**
-     *
-     * @param sorting
+     * @param {OrderItem<E>} orderItem
      * @return {Criteria}
      */
     public addOrder(orderItem: OrderItem<E>): Criteria<E> {
@@ -221,6 +222,10 @@ export default class Criteria<E> extends Type {
         return this.dataList ? this.dataList.length : 0;
     }
 
+    private static indexOfRestriction(name: string, op: string) {
+        return `${name}&${op}`;
+    }
+
     /**
      *
      * @param restriction
@@ -228,32 +233,38 @@ export default class Criteria<E> extends Type {
      */
     public add(restriction: RestrictionItem): Criteria<E> {
         if (restriction) {
-            this.restrictions[this.restrictions.length] = restriction;
+            const index: string = Criteria.indexOfRestriction(restriction.key, restriction.op);
+            this.removeRestrictionByIndex(index);
+            this.restrictionMap[index] = restriction;
         }
         return this;
     }
 
-    public removeRestrictionByKey(key: string): Criteria<E> {
-        for (let i = 0; i < this.restrictions.length; i = i + 1) {
-            if (this.restrictions[i].key === key) {
-                this.restrictions = this.restrictions.splice(i, 1);
+    public removeRestrictionByName(name: string): Criteria<E> {
+        for (const key in this.restrictionMap) {
+            if (this.restrictionMap.hasOwnProperty(key)) {
+                if (Strings.startsWith(key, `${name}&`)) {
+                    delete this.restrictionMap[key];
+                }
             }
         }
         return this;
     }
 
-    public removeRestriction(key: string, op: string): Criteria<E> {
-        for (let i = 0; i < this.restrictions.length; i = i + 1) {
-            const restriction = this.restrictions[i];
-            if (restriction.key === key && restriction.op === op) {
-                this.restrictions = this.restrictions.splice(i, 1);
-            }
+    public removeRestriction(name: string, op: string): Criteria<E> {
+        const index = Criteria.indexOfRestriction(name, op);
+        return this.removeRestrictionByIndex(index);
+    }
+
+    public removeRestrictionByIndex(index: string): Criteria<E> {
+        if (this.restrictionMap[index]) {
+            delete this.restrictionMap[index];
         }
         return this;
     }
 
     public clearRestriction(): Criteria<E> {
-        this.restrictions = [];
+        this.restrictionMap = {};
         return this;
     }
 
@@ -270,11 +281,22 @@ export default class Criteria<E> extends Type {
         return this;
     }
 
+    private static has(props: Props<any>) {
+        for (const key in props) {
+            if (props.hasOwnProperty(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static filter<E>(instance: Criteria<E>, item: any) {
         let result = true;
-        for (let i = 0; i < instance.restrictions.length; i = i + 1) {
-            const restriction = instance.restrictions[i];
-            result = result && restriction.predicate(item);
+        for (const key in instance.restrictionMap) {
+            if (instance.restrictionMap.hasOwnProperty(key)) {
+                const restriction = instance.restrictionMap[key];
+                result = result && restriction.predicate(item);
+            }
         }
         return result;
     }
@@ -286,7 +308,7 @@ export default class Criteria<E> extends Type {
     public static list<E>(instance: Criteria<E>): CriteriaResult<E> {
         const dataArray = instance.dataList;
 
-        let data = instance.restrictions.length > 0 ? dataArray.filter(Criteria.filter.bind(Criteria, instance)) : dataArray.slice(0);
+        let data = Criteria.has(instance.restrictionMap) ? dataArray.filter(Criteria.filter.bind(Criteria, instance)) : dataArray.slice(0);
 
         const total = data.length;
 
