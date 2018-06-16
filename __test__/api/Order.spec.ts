@@ -40,7 +40,7 @@ describe("api/Order", () => {
                 age: 16
             }
         ];
-        assert.deepEqual(expectedData, Order.asc("name")(data));
+        assert.deepEqual(expectedData, Order.asc("name").sort(data));
     });
 
     it("desc", () => {
@@ -81,6 +81,6 @@ describe("api/Order", () => {
                 age: 16
             }
         ];
-        assert.deepEqual(expectedData, Order.desc("name")(data));
+        assert.deepEqual(expectedData, Order.desc("name").sort(data));
     });
 });

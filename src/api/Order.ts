@@ -3,6 +3,15 @@
  */
 import {Props} from "wasabi-common";
 
+export interface OrderItem<E> {
+    key: string;
+    sort: OrderCallback<E>;
+}
+
+export interface OrderCallback<E> {
+    (dataList: E[]): E[];
+}
+
 class Order {
     /**
      *
@@ -10,8 +19,11 @@ class Order {
      * @param {string} key
      * @return {Function}
      */
-    public static asc(key: string): (dataList: any[]) => any[] {
-        return Order.sort(key, false);
+    public static asc<E>(key: string): OrderItem<E> {
+        return {
+            key,
+            sort: Order.sort(key, false)
+        };
     }
 
     /**
@@ -19,8 +31,11 @@ class Order {
      * @param {string} key
      * @return {Function}
      */
-    public static desc(key: string): (dataList: any[]) => any[] {
-        return Order.sort(key, true);
+    public static desc<E>(key: string): OrderItem<E> {
+        return {
+            key,
+            sort: Order.sort(key, true)
+        };
     }
 
     /**
@@ -31,10 +46,10 @@ class Order {
      * @return {Function}
      * @private
      */
-    private static sort(key: string, isDesc: boolean): (dataList: any[]) => any[] {
+    private static sort<E>(key: string, isDesc: boolean): OrderCallback<E> {
         const less: number = isDesc ? 1 : -1;
         const greater: number = isDesc ? -1 : 1;
-        return (dataList: any[]): any[] => {
+        return (dataList: E[]): E[] => {
             dataList.sort((source: Props<any>, destination: Props<any>): number => {
                 const sourceValue = source[key];
                 const destinationValue = destination[key];

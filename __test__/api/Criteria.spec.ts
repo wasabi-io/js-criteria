@@ -86,64 +86,6 @@ describe("api/Criteria", () => {
         assert.deepEqual(expectedData, criteria.list().data);
     });
 
-    it("addQuery", () => {
-        const data: any = [
-            {
-                name: "Nami",
-                age: 16,
-            },
-            {
-                name: "Monkey D. Luffy",
-                age: 16,
-            },
-            {
-                name: "Gol D. Roger",
-                age: 32,
-            },
-            {
-                name: "Chopper",
-                age: 16,
-            },
-        ];
-
-        const expectedData: any = [
-            {
-                name: "Monkey D. Luffy",
-                age: 16,
-            },
-            {
-                name: "Gol D. Roger",
-                age: 32,
-            },
-            {
-                name: "Chopper",
-                age: 16,
-            },
-        ];
-
-        let criteria = new Criteria(data);
-        criteria.addQuery({
-            value: "o",
-        });
-        assert.deepEqual(expectedData, criteria.list().data);
-
-        const data2: any = [
-            {id: 1, name: "John", surname: "Doe"},
-            {name: "Jane", surname: "Roe", id: 2},
-        ];
-
-        const expectedData2: any = [
-            {id: 1, name: "John", surname: "Doe"},
-            {id: 2, name: "Jane", surname: "Roe"},
-        ];
-
-        criteria = new Criteria(data2);
-        criteria.addQuery({
-            value: "J",
-        });
-        assert.deepEqual(expectedData2, criteria.list().data);
-    });
-
     it("clear", () => {
         const data = [
             {
@@ -167,9 +109,6 @@ describe("api/Criteria", () => {
         const criteria = new Criteria(data);
         criteria.add(Restrictions.eq("name", "Gol D. Roger"));
         criteria.addOrder(Order.asc("name"));
-        criteria.addQuery({
-            value: "o",
-        });
         criteria.clear();
         assert.deepEqual(data, criteria.list().data);
     });

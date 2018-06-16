@@ -29,12 +29,42 @@ npm install --save js-criteria
   - [Restrictions](https://wasabi-io.github.io/js-criteria/modules/_api_restrictions_.restrictions.html) :
      Provides to filter on `Criteria`.
 
-
 * import
 ```typescript
 import {Criteria, Order, Restrictions} from "js-criteria";
 ```
 
+
+* operate on Criteria
+
+```typescript
+        const result = criteria
+            .setLimit(10)
+            .setOffset(0)
+            .sort("age", OrderType.asc)
+            .asc("name")
+            .desc("surname")
+            .isTrue("enabled")
+            .isFalse("deleted")
+            .isNull("name")
+            .isNotNull("name")
+            .eq("name", "sample")
+            .neq("name", "sample")
+            .gt("age", 18)
+            .gte("age", 18)
+            .lt("age", 18)
+            .lte("age", 18)
+            .between("age", 18, 24)
+            .like("name", "sample")
+            .likeIn("name", ["sample"])
+            .in("name", ["sample"])
+            .startsWith("name", "sample")
+            .endsWith("name", "sample")
+            .query("sample")
+            .list();
+        console.log(result.total);
+        console.log(result.data);
+```
 
 * add restriction
 
@@ -61,16 +91,21 @@ const data = [
 
 const criteria = new Criteria(data);
 criteria.add(Restrictions.eq("name", "Gol D. Roger"));
-console.log(criteria.list().total);
-console.log(criteria.list().data);
+let result = criteria.list();
+console.log(result.total);
+console.log(result.data);
 
+criteria.clear();
 criteria.add(Restrictions.eq("age", 16));
-console.log(criteria.list().total);
-console.log(criteria.list().data);
+result = criteria.list();
+console.log(result.total);
+console.log(result.data);
 
+criteria.clear();
 criteria.add(Restrictions.eq("age", 16));
-console.log(criteria.list().total);
-console.log(criteria.list().data);
+result = criteria.list();
+console.log(result.total);
+console.log(result.data);
 ```
 
 * add order
@@ -97,8 +132,10 @@ const data = [
 
 const criteria = new Criteria(data);
 criteria.addOrder(Order.asc("name"));
-console.log(criteria.list().total);
-console.log(criteria.list().data);
+let result = criteria.list();
+console.log(result.total);
+console.log(result.data);
+
 ```
 
 
@@ -125,11 +162,10 @@ const data: any = [
 ];
 
 let criteria = new Criteria(data);
-criteria.addQuery({
-    value: "o",
-});
-console.log(criteria.list().total);
-console.log(criteria.list().data);
+criteria.add(Restrictions.query("o"));
+let result = criteria.list();
+console.log(result.total);
+console.log(result.data);
 
 const data2: any = [
     {id: 1, name: "John", surname: "Doe"},
@@ -137,27 +173,77 @@ const data2: any = [
 ];
 
 criteria2 = new Criteria(data2);
-criteria2.addQuery({
-    value: "J",
-});
-console.log(criteria2.list().total);
-console.log(criteria2.list().data);
+criteria2.addQuery(Restrictions.query("J"));
+let result2 = criteria.list();
+console.log(result2.total);
+console.log(result2.data);
 ```
 
 
 * reset criteria as initial state.
 
 ```typescript
+
 const criteria = new Criteria(data);
+
 criteria.add(Restrictions.eq("name", "Gol D. Roger"));
 criteria.addOrder(Order.asc("name"));
-criteria.addQuery({
-    value: "o",
-});
+
+let result = criteria.list();
+
+console.log(result.total);
+console.log(result.data);
+
+// reset criteria
 criteria.clear();
-console.log(criteria.list().data); // show all data.
+
+result = criteria.list();
+
+console.log(result.total);
+console.log(result.data);  // show all data.
+
 ```
 
+
+* All methods defined on Criteria
+
+    - `public get offset()`
+    - `public setOffset(firstResult: number): Criteria<E>`
+    - `public get limit()`
+    - `public setLimit(limit: number): Criteria<E>`
+    - `public sort(name: string, orderType: OrderType): Criteria<E>`
+    - `public asc(name: string): Criteria<E>`
+    - `public desc(name: string): Criteria<E>`
+    - `public isTrue(name: string): Criteria<E>`
+    - `public isFalse(name: string): Criteria<E>`
+    - `public isNull(name: string): Criteria<E>`
+    - `public isNotNull(name: string): Criteria<E>`
+    - `public eq(name: string, value: any, caseSensitive?: boolean): Criteria<E>`
+    - `public neq(name: string, value: any, caseSensitive?: boolean): Criteria<E>`
+    - `public gt(name: string, value: any): Criteria<E>`
+    - `public gte(name: string, value: any): Criteria<E>`
+    - `public lt(name: string, value: any): Criteria<E>`
+    - `public lte(name: string, value: any): Criteria<E>`
+    - `public between(name: string, leftValue: any, rightValue: any): Criteria<E>`
+    - `public like(name: string, value: any, caseSensitive?: boolean): Criteria<E>`
+    - `public likeIn(name: string, values: any[], caseSensitive?: boolean): Criteria<E>`
+    - `public in(name: string, values: any[], caseSensitive?: boolean): Criteria<E>`
+    - `public startsWith(name: string, value: any, caseSensitive?: boolean): Criteria<E>`
+    - `public endsWith(name: string, value: any, caseSensitive?: boolean): Criteria<E>`
+    - `public query(value: any, ignoreList?: string[]): Criteria<E>`
+    - `public addOrder(orderItem: OrderItem<E>): Criteria<E>`
+    - `public removeOrder(key: string): Criteria<E>`
+    - `public clearOrder(): Criteria<E>`
+    - `public get total(): number`
+    - `public add(restriction: RestrictionItem): Criteria<E>`
+    - `public removeRestrictionByKey(key: string): Criteria<E>`
+    - `public removeRestriction(key: string, op: string): Criteria<E>`
+    - `public clearRestriction(): Criteria<E>`
+    - `public list(): CriteriaResult<E>`
+    - `public clear(): Criteria<E>`
+
+
+#### LICENSE
 
 The MIT License (MIT)
 

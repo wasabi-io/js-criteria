@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.1.0
+* changed Predicates
+* added `isTrue`, `isFalse`, `neq` functions to `Restrictions`
+* added new methods to criteria and changed some methods on Criteria. You can check methods on *README* file.
+
 ## 2.0.1
  * fixed total problem.
 

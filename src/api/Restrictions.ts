@@ -1,60 +1,60 @@
-import Validations from "wasabi-common/lib/util/Validations";
-import Strings from "wasabi-common/lib/types/Strings";
-import Objects, {Props} from "wasabi-common/lib/types/Objects";
+import {Props} from "wasabi-common/lib/types/Objects";
+import Predicates, {Predicate, PredicateMultiple} from "./Predicates";
 
-export interface Predicate {
-    (data: Props<any>): boolean;
+export interface RestrictionItem {
+    key: string;
+    op: string;
+    predicate: Predicate;
 }
 
 /**
  * Resrictions to constrain the results to be retrieved.
  */
 export default class Restrictions {
+
+    /**
+     * @param {string} key
+     * @param {string} op
+     * @param {Predicate} predicate
+     * @returns {RestrictionItem}
+     */
+    public static wrap(key: string, op: string, predicate: Predicate): RestrictionItem {
+        return {
+            key,
+            op,
+            predicate
+        };
+    }
+
     /**
      * @description evulates op and execute it.
      * @param {string} op
      * @param {string} key
      * @param {any} value
-     * @return {Predicate}
+     * @return {RestrictionItem}
      */
-    public static op(key: string, op: string, value: any): Predicate {
-        return (data: Props<any>): boolean => {
-            if (typeof data[key] === "number") {
-                return eval(data[key] + op + value);
-            }
-            const leftSide = Validations.isString(data[key]) ? "'" + data[key] + "'" : data[key];
-            const rightSide = Validations.isString(value) ? "'" + value + "'" : value;
-            return eval(leftSide + op + rightSide);
-        };
+    public static op(key: string, op: string, value: any): RestrictionItem {
+        return Restrictions.wrap(key, op, Predicates.op(key, op, value));
     }
 
     /**
      * @description checks equality given value and given value of data by key.
      * @param {string} key
-     * @param {any} value
-     * @param {boolean} caseSensitive
-     * @return {Function}
+     * @return {RestrictionItem}
      * @private
      */
-    private static equal(key: string, value: any, caseSensitive: boolean): Predicate {
-        return (data: Props<any>): boolean => {
-            let propValue = data[key];
-            if (propValue == null || value == null) {
-                return propValue === value;
-            }
-            if (typeof propValue !== "string") {
-                propValue = propValue.toString();
-            }
-            let equalValue: any = value;
-            if (typeof equalValue !== "string") {
-                equalValue = value.toString();
-            }
-            if (!caseSensitive) {
-                equalValue = equalValue.toLocaleLowerCase();
-                propValue = propValue.toLocaleLowerCase();
-            }
-            return propValue === equalValue;
-        };
+    public static isTrue(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isTrue", Predicates.isTrue(key));
+    }
+
+    /**
+     * @description checks equality given value and given value of data by key.
+     * @param {string} key
+     * @return {RestrictionItem}
+     * @private
+     */
+    public static isFalse(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isFalse", Predicates.isFalse(key));
     }
 
     /**
@@ -62,58 +62,61 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static eq(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return this.equal(key, value, caseSensitive);
+    public static eq(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "eq", Predicates.eq(key, value, caseSensitive));
+    }
+
+    /**
+     * @description checks equality given value and given value of data by key.
+     * @param {string} key
+     * @param {any} value
+     * @param {boolean} caseSensitive
+     * @return {RestrictionItem}
+     */
+    public static neq(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "neq", Predicates.neq(key, value, caseSensitive));
     }
 
     /**
      * @description checks given value of data by key less then given value .
      * @param {string} key
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static lt(key: string, value: any): (data: Props<any>) => boolean {
-        return (data: Props<any>): boolean => {
-            return data[key] < value;
-        };
+    public static lt(key: string, value: any): RestrictionItem {
+        return Restrictions.wrap(key, "lt", Predicates.lt(key, value));
     }
 
     /**
      * @description checks given value of data by key less then or equals given value .
      * @param {string} key
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static lte(key: string, value: any): Predicate {
-        return (data: Props<any>): boolean => {
-            return data[key] <= value;
-        };
+    public static lte(key: string, value: any): RestrictionItem {
+        return Restrictions.wrap(key, "lte", Predicates.lte(key, value));
     }
 
     /**
      * @description checks given value of data by key greater then given value .
      * @param {string} key
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static gt(key: string, value: any): Predicate {
-        return (data: Props<any>): boolean => {
-            return data[key] > value;
-        };
+    public static gt(key: string, value: any): RestrictionItem {
+        return Restrictions.wrap(key, "gt", Predicates.gt(key, value));
     }
 
     /**
      * @description checks given value of data by key greater then or equals given value .
      * @param {string} key
      * @param {any} value
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static gte(key: string, value: any): Predicate {
-        return (data: Props<any>): boolean => {
-            return data[key] >= value;
-        };
+    public static gte(key: string, value: any): RestrictionItem {
+        return Restrictions.wrap(key, "gte", Predicates.gte(key, value));
     }
 
     /**
@@ -121,53 +124,10 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} startValue
      * @param {any} endValue
-     * @return {Function}
+     * @return {RestrictionItem}
      */
-    public static between(key: string, startValue: any, endValue: any): Predicate {
-        let betweenStartValue = startValue;
-        let betweenEndValue = endValue;
-        if (betweenStartValue > betweenEndValue) {
-            const temp = betweenStartValue;
-            betweenStartValue = betweenEndValue;
-            betweenEndValue = temp;
-        }
-        return this.and.apply(this, [this.gte(key, betweenStartValue), this.lte(key, betweenEndValue)]);
-    }
-
-    /**
-     *
-     * @param data
-     * @param key
-     * @param value
-     * @param fromLeft
-     * @param fromRight
-     * @param caseSensitive
-     * @return {boolean}
-     */
-    private static checkLike(data: Props<any>, key: string, value: any, fromLeft: boolean, fromRight: boolean, caseSensitive?: boolean) {
-        let propValue = data[key];
-        if (propValue && typeof propValue !== "string") {
-            propValue = propValue.toString();
-        }
-        let likeValue = value;
-        if (!caseSensitive) {
-            likeValue = likeValue.toLocaleLowerCase();
-            propValue = propValue.toLocaleLowerCase();
-        }
-
-        if (fromLeft && fromRight) {
-            return propValue.indexOf(likeValue) > -1;
-        }
-
-        if (fromLeft) {
-            return Strings.startsWith(propValue, likeValue);
-        }
-
-        if (fromRight) {
-            return Strings.endsWith(propValue, likeValue);
-        }
-
-        return this.equal(key, likeValue, caseSensitive)(data);
+    public static between(key: string, startValue: any, endValue: any): RestrictionItem {
+        return Restrictions.wrap(key, "between", Predicates.between(key, startValue, endValue));
     }
 
     /**
@@ -175,18 +135,11 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      * @private
      */
-    public static likeWithPercent(key: string, value: any, caseSensitive: boolean): Predicate {
-        const fromLeft = Strings.endsWith(value, "%");
-        const fromRight = Strings.startsWith(value, "%");
-        const startIndex = fromRight ? 1 : 0;
-        const endIndex = fromLeft ? value.length - 1 : value.length;
-        const likeValue = value.substring(startIndex, endIndex);
-        return (data: Props<any>) => {
-            return Restrictions.checkLike(data, key, likeValue, fromLeft, fromRight, caseSensitive);
-        };
+    public static likeWithPercent(key: string, value: any, caseSensitive: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "like", Predicates.likeWithPercent(key, value, caseSensitive));
     }
 
     /**
@@ -194,12 +147,12 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static startsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return (data: Props<any>) => {
-            return Restrictions.checkLike(data, key, value, true, false, caseSensitive);
-        };
+    public static startsWith(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "startsWith", (data: Props<any>) => {
+            return Predicates.checkLike(data, key, value, true, false, caseSensitive);
+        });
     }
 
     /**
@@ -207,12 +160,12 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static endsWith(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return (data: Props<any>) => {
-            return Restrictions.checkLike(data, key, value, false, true, caseSensitive);
-        };
+    public static endsWith(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "endsWith", (data: Props<any>) => {
+            return Predicates.checkLike(data, key, value, false, true, caseSensitive);
+        });
     }
 
     /**
@@ -220,12 +173,12 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static contains(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return (data: any) => {
-            return Restrictions.checkLike(data, key, value, true, true, caseSensitive);
-        };
+    public static contains(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "contains", (data: any) => {
+            return Predicates.checkLike(data, key, value, true, true, caseSensitive);
+        });
     }
 
     /**
@@ -233,131 +186,112 @@ export default class Restrictions {
      * @param {string} key
      * @param {any} value
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static like(key: string, value: any, caseSensitive?: boolean): Predicate {
-        return this.likeWithPercent(key, value, caseSensitive);
+    public static like(key: string, value: any, caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "like", Predicates.likeWithPercent(key, value, caseSensitive));
     }
 
-    /**
-     *
-     * @description @param {string} key
-     * @param {Array<any>} values
-     * @param {boolean} caseSensitive
-     * @returns {Function}
-     */
     /**
      * @description checks given value of data by key in given array values by caseSensitive parameter.
      * @param {string} key
      * @param {Array<any>} values
      * @param {boolean} caseSensitive
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static in(key: string, values: any[], caseSensitive?: boolean): Predicate {
-        const restrictions: Restrictions[] = [];
-        for (let i = 0; i < values.length; i = i + 1) {
-            restrictions[restrictions.length] = this.eq(key, values[i], caseSensitive);
-        }
-        return this.or.apply(this, restrictions);
+    public static in(key: string, values: any[], caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "in", Predicates.in(key, values, caseSensitive));
+    }
+
+    /**
+     * @description checks given value of data by key in given array values by caseSensitive parameter.
+     * @param {string} key
+     * @param {Array<any>} values
+     * @param {boolean} caseSensitive
+     * @returns {RestrictionItem}
+     */
+    public static likeIn(key: string, values: any[], caseSensitive?: boolean): RestrictionItem {
+        return Restrictions.wrap(key, "likeIn", Predicates.likeIn(key, values, caseSensitive));
     }
 
     /**
      * @description checks given value of data by key is null.
      * @param {string} key
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static isNull(key: string): Predicate {
-        return (data: any): boolean => {
-            const propValue = data[key];
-            return (propValue === undefined || propValue === null);
-        };
+    public static isNull(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isNull", Predicates.isNull(key));
     }
 
     /**
      * @description checks given value of data by key is not null.
      * @param {string} key
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static isNotNull(key: string): Predicate {
-        return (data: any): boolean => {
-            return !(data[key] === undefined || data[key] === null);
-        };
+    public static isNotNull(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isNotNull", Predicates.isNotNull(key));
     }
 
     /**
      * @description checks given value of data by key is empty.
      * @param {string} key
-     * @returns {Function}
+     * @returns {RestrictionItem}
      */
-    public static isEmpty(key: string): Predicate {
-        return (data: any): boolean => {
-            const propValue = data[key];
-            return (propValue === undefined || propValue === null) || propValue === "";
-        };
+    public static isEmpty(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isEmpty", Predicates.isEmpty(key));
+    }
+
+    /**
+     * @description checks given value of data by key is not empty.
+     * @param {string} key
+     * @returns {RestrictionItem}
+     */
+    public static isNotEmpty(key: string): RestrictionItem {
+        return Restrictions.wrap(key, "isNotEmpty", Predicates.isNotEmpty(key));
     }
 
     /**
      *
      * @param value
      * @param ignoreList
-     * @return {(data:any)=>boolean}
+     * @return {RestrictionItem}
      */
-    public static query(value: string, ignoreList?: string[]): Predicate {
-        const ignores = ignoreList || [];
-        return (data: Props<any>): boolean => {
-            let isSet = false;
-            let result = false;
-            Objects.forEach(data, (item: any, key: string) => {
-                if (typeof item === "string" && ignores.indexOf(key) === -1) {
-                    result = result || Restrictions.checkLike(data, key, value, true, true);
-                    isSet = true;
-                }
-            });
-            return isSet ? result : true;
-        };
-    }
-
-    /**
-     * @description checks given value of data by key is not empty.
-     * @param {string} key
-     * @returns {Function}
-     */
-    public static isNotEmpty(key: string): (data: Props<any>) => boolean {
-        return (data: Props<any>): boolean => {
-            const propValue = data[key];
-            return !((propValue === undefined || propValue === null) || propValue === "");
-        };
+    public static query(value: string, ignoreList?: string[]): RestrictionItem {
+        return Restrictions.wrap("", "query", Predicates.query(value, ignoreList));
     }
 
     /**
      * @description joins Restrictions functions with or validation.
-     * @param { ...Function }restrictions
-     * @returns {Function}
+     * @param { ...RestrictionItem }restrictions
+     * @returns {RestrictionItem}
      */
-    public static or(...restrictions: ((data: Props<any>) => boolean)[]): (data: Props<any>) => boolean {
-        return (data: Props<any>): boolean => {
-            let result = false;
-            for (let i = 0; i < restrictions.length; i = i + 1) {
-                result = result || restrictions[i](data);
-            }
-            return result;
-        };
+    public static or(...restrictions: RestrictionItem[]): RestrictionItem {
+        return Restrictions.operateMultiple("or", restrictions, Predicates.orOperation);
     }
 
     /**
      * @description joins Restrictions functions with and validation.
-     * @param { ...Function }restrictions
-     * @returns {Function}
+     * @param { ...RestrictionItem }restrictions
+     * @returns {RestrictionItem}
      */
-    public static and(...restrictions: ((data: Props<any>) => boolean)[]): (data: Props<any>) => boolean {
-        return (data: Props<any>): boolean => {
-            let result = true;
-            for (let i = 0; i < restrictions.length; i = i + 1) {
-                result = result && restrictions[i](data);
-            }
-            return result;
-        };
+    public static and(...restrictions: RestrictionItem[]): RestrictionItem {
+        return Restrictions.operateMultiple("and", restrictions, Predicates.andOperation);
     }
 
+    /**
+     * @description joins Restrictions functions with and validation.
+     * @param op {string}
+     * @param { ...RestrictionItem }restrictions
+     * @param {PredicateMultiple} predicateMultiple
+     * @returns {Function}
+     */
+    private static operateMultiple(op: string, restrictions: RestrictionItem[], predicateMultiple: PredicateMultiple): RestrictionItem {
+        const keys = [];
+        const predicates = [];
+        for (const restriction of restrictions) {
+            keys.push(`${restriction.key}:${restriction.op}`);
+            predicates.push(restriction.predicate);
+        }
+        return Restrictions.wrap(keys.join("-"), op, predicateMultiple(predicates));
+    }
 }
-

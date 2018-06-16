@@ -93,6 +93,36 @@
 					</li>
 				</ul>
 				<ul>
+					<li>operate on Criteria</li>
+				</ul>
+				<pre><code class="lang-typescript">        <span class="hljs-keyword">const</span> result = criteria
+            .setLimit(<span class="hljs-number">10</span>)
+            .setOffset(<span class="hljs-number">0</span>)
+            .sort(<span class="hljs-string">"age"</span>, OrderType.asc)
+            .asc(<span class="hljs-string">"name"</span>)
+            .desc(<span class="hljs-string">"surname"</span>)
+            .isTrue(<span class="hljs-string">"enabled"</span>)
+            .isFalse(<span class="hljs-string">"deleted"</span>)
+            .isNull(<span class="hljs-string">"name"</span>)
+            .isNotNull(<span class="hljs-string">"name"</span>)
+            .eq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"sample"</span>)
+            .neq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"sample"</span>)
+            .gt(<span class="hljs-string">"age"</span>, <span class="hljs-number">18</span>)
+            .gte(<span class="hljs-string">"age"</span>, <span class="hljs-number">18</span>)
+            .lt(<span class="hljs-string">"age"</span>, <span class="hljs-number">18</span>)
+            .lte(<span class="hljs-string">"age"</span>, <span class="hljs-number">18</span>)
+            .between(<span class="hljs-string">"age"</span>, <span class="hljs-number">18</span>, <span class="hljs-number">24</span>)
+            .like(<span class="hljs-string">"name"</span>, <span class="hljs-string">"sample"</span>)
+            .likeIn(<span class="hljs-string">"name"</span>, [<span class="hljs-string">"sample"</span>])
+            .in(<span class="hljs-string">"name"</span>, [<span class="hljs-string">"sample"</span>])
+            .startsWith(<span class="hljs-string">"name"</span>, <span class="hljs-string">"sample"</span>)
+            .endsWith(<span class="hljs-string">"name"</span>, <span class="hljs-string">"sample"</span>)
+            .query(<span class="hljs-string">"sample"</span>)
+            .list();
+        <span class="hljs-built_in">console</span>.log(result.total);
+        <span class="hljs-built_in">console</span>.log(result.data);
+</code></pre>
+				<ul>
 					<li>add restriction</li>
 				</ul>
 				<pre><code class="lang-typescript">
@@ -117,16 +147,21 @@
 
 <span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
 criteria.add(Restrictions.eq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Gol D. Roger"</span>));
-<span class="hljs-built_in">console</span>.log(criteria.list().total);
-<span class="hljs-built_in">console</span>.log(criteria.list().data);
+<span class="hljs-keyword">let</span> result = criteria.list();
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
 
+criteria.clear();
 criteria.add(Restrictions.eq(<span class="hljs-string">"age"</span>, <span class="hljs-number">16</span>));
-<span class="hljs-built_in">console</span>.log(criteria.list().total);
-<span class="hljs-built_in">console</span>.log(criteria.list().data);
+result = criteria.list();
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
 
+criteria.clear();
 criteria.add(Restrictions.eq(<span class="hljs-string">"age"</span>, <span class="hljs-number">16</span>));
-<span class="hljs-built_in">console</span>.log(criteria.list().total);
-<span class="hljs-built_in">console</span>.log(criteria.list().data);
+result = criteria.list();
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
 </code></pre>
 				<ul>
 					<li>add order</li>
@@ -152,8 +187,10 @@ criteria.add(Restrictions.eq(<span class="hljs-string">"age"</span>, <span class
 
 <span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
 criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
-<span class="hljs-built_in">console</span>.log(criteria.list().total);
-<span class="hljs-built_in">console</span>.log(criteria.list().data);
+<span class="hljs-keyword">let</span> result = criteria.list();
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
+
 </code></pre>
 				<ul>
 					<li>add query</li>
@@ -178,11 +215,10 @@ criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
 ];
 
 <span class="hljs-keyword">let</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
-criteria.addQuery({
-    value: <span class="hljs-string">"o"</span>,
-});
-<span class="hljs-built_in">console</span>.log(criteria.list().total);
-<span class="hljs-built_in">console</span>.log(criteria.list().data);
+criteria.add(Restrictions.query(<span class="hljs-string">"o"</span>));
+<span class="hljs-keyword">let</span> result = criteria.list();
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
 
 <span class="hljs-keyword">const</span> data2: <span class="hljs-built_in">any</span> = [
     {id: <span class="hljs-number">1</span>, name: <span class="hljs-string">"John"</span>, surname: <span class="hljs-string">"Doe"</span>},
@@ -190,24 +226,75 @@ criteria.addQuery({
 ];
 
 criteria2 = <span class="hljs-keyword">new</span> Criteria(data2);
-criteria2.addQuery({
-    value: <span class="hljs-string">"J"</span>,
-});
-<span class="hljs-built_in">console</span>.log(criteria2.list().total);
-<span class="hljs-built_in">console</span>.log(criteria2.list().data);
+criteria2.addQuery(Restrictions.query(<span class="hljs-string">"J"</span>));
+<span class="hljs-keyword">let</span> result2 = criteria.list();
+<span class="hljs-built_in">console</span>.log(result2.total);
+<span class="hljs-built_in">console</span>.log(result2.data);
 </code></pre>
 				<ul>
 					<li>reset criteria as initial state.</li>
 				</ul>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+				<pre><code class="lang-typescript">
+<span class="hljs-keyword">const</span> criteria = <span class="hljs-keyword">new</span> Criteria(data);
+
 criteria.add(Restrictions.eq(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Gol D. Roger"</span>));
 criteria.addOrder(Order.asc(<span class="hljs-string">"name"</span>));
-criteria.addQuery({
-    value: <span class="hljs-string">"o"</span>,
-});
+
+<span class="hljs-keyword">let</span> result = criteria.list();
+
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);
+
+<span class="hljs-comment">// reset criteria</span>
 criteria.clear();
-<span class="hljs-built_in">console</span>.log(criteria.list().data); <span class="hljs-comment">// show all data.</span>
+
+result = criteria.list();
+
+<span class="hljs-built_in">console</span>.log(result.total);
+<span class="hljs-built_in">console</span>.log(result.data);  <span class="hljs-comment">// show all data.</span>
+
 </code></pre>
+				<ul>
+					<li><p>All methods defined on Criteria</p>
+						<ul>
+							<li><code>public get offset()</code></li>
+							<li><code>public setOffset(firstResult: number): Criteria&lt;E&gt;</code></li>
+							<li><code>public get limit()</code></li>
+							<li><code>public setLimit(limit: number): Criteria&lt;E&gt;</code></li>
+							<li><code>public sort(name: string, orderType: OrderType): Criteria&lt;E&gt;</code></li>
+							<li><code>public asc(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public desc(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public isTrue(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public isFalse(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public isNull(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public isNotNull(name: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public eq(name: string, value: any, caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public neq(name: string, value: any, caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public gt(name: string, value: any): Criteria&lt;E&gt;</code></li>
+							<li><code>public gte(name: string, value: any): Criteria&lt;E&gt;</code></li>
+							<li><code>public lt(name: string, value: any): Criteria&lt;E&gt;</code></li>
+							<li><code>public lte(name: string, value: any): Criteria&lt;E&gt;</code></li>
+							<li><code>public between(name: string, leftValue: any, rightValue: any): Criteria&lt;E&gt;</code></li>
+							<li><code>public like(name: string, value: any, caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public likeIn(name: string, values: any[], caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public in(name: string, values: any[], caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public startsWith(name: string, value: any, caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public endsWith(name: string, value: any, caseSensitive?: boolean): Criteria&lt;E&gt;</code></li>
+							<li><code>public query(value: any, ignoreList?: string[]): Criteria&lt;E&gt;</code></li>
+							<li><code>public addOrder(orderItem: OrderItem&lt;E&gt;): Criteria&lt;E&gt;</code></li>
+							<li><code>public removeOrder(key: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public clearOrder(): Criteria&lt;E&gt;</code></li>
+							<li><code>public get total(): number</code></li>
+							<li><code>public add(restriction: RestrictionItem): Criteria&lt;E&gt;</code></li>
+							<li><code>public removeRestrictionByKey(key: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public removeRestriction(key: string, op: string): Criteria&lt;E&gt;</code></li>
+							<li><code>public clearRestriction(): Criteria&lt;E&gt;</code></li>
+							<li><code>public list(): CriteriaResult&lt;E&gt;</code></li>
+							<li><code>public clear(): Criteria&lt;E&gt;</code></li>
+						</ul>
+					</li>
+				</ul>
+				<h4 id="license">LICENSE</h4>
 				<p>The MIT License (MIT)</p>
 				<p>Copyright (c) 2016 Robe</p>
 				<p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -241,6 +328,9 @@ criteria.clear();
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_api_order_.html">"api/<wbr>Order"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_api_predicates_.html">"api/<wbr>Predicates"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_api_property_.html">"api/<wbr>Property"</a>
