@@ -318,15 +318,11 @@ export default class Criteria<E> extends Type {
         /** } **/
 
         const first = instance.offset || 0;
-        const maxResult = instance.limit || data.length;
-        let last = first + maxResult;
-        if (last > dataArray.length) {
-            last = dataArray.length;
-        }
+        const limit = instance.limit || data.length - first;
 
-        if (first !== 0 || last !== dataArray.length) {
-            return new CriteriaResult<E>(total, data.splice(first, last));
+        if (first === 0 && limit === dataArray.length) {
+            return new CriteriaResult<E>(total, data);
         }
-        return new CriteriaResult<E>(total, data);
+        return new CriteriaResult<E>(total, data.splice(first, limit));
     }
 }
